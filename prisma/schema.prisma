@@ -1,0 +1,366 @@
+/// Purpose: Define the PostgreSQL schema for the Droop compatibility backend with legacy table and column mappings.
+/// Expected request body: None.
+/// Expected query parameters: None.
+/// Expected headers: None.
+/// Expected response structure: Prisma schema models and enums used by the application runtime and tests.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum CommentType {
+  text
+  image
+}
+
+enum PaymentStatus {
+  Pending
+  Complete
+  Cancel
+}
+
+model BlocksMaster {
+  user_id  String
+  block_id String
+
+  @@id([user_id, block_id])
+  @@map("blocks_master")
+}
+
+model BusinessMaster {
+  id   Int    @id @default(autoincrement())
+  name String @db.VarChar(50)
+
+  @@map("business_master")
+}
+
+model CategoriesMaster {
+  id    Int    @id @default(autoincrement())
+  name  String @db.VarChar(50)
+  image String @db.VarChar(255)
+
+  @@map("categories_master")
+}
+
+model CommentsMaster {
+  comment_id   Int    @id @default(autoincrement())
+  comment_by   String @db.VarChar(255)
+  comment_txt  String @db.VarChar(255)
+  broadcast_id String @db.VarChar(255)
+
+  @@map("comments_master")
+}
+
+model DualpostCategory {
+  dual_id     Int
+  category_id Int
+
+  @@id([dual_id, category_id])
+  @@map("dualpost_category")
+}
+
+model DualpostComment {
+  comment_id    BigInt      @id @default(autoincrement())
+  dual_id       BigInt
+  parent_id     BigInt?
+  thread_id     BigInt?
+  comment_by    BigInt
+  comment_type  CommentType
+  comment       Bytes
+  created_date  DateTime    @db.Timestamp(6)
+
+  @@map("dualpost_comment")
+}
+
+model DualpostCommentLove {
+  loved_by     BigInt
+  comment_id   BigInt
+  created_date DateTime @db.Timestamp(6)
+
+  @@id([loved_by, comment_id])
+  @@map("dualpost_comment_love")
+}
+
+model DualpostInterest {
+  dual_id     Int
+  interest_id Int
+
+  @@id([dual_id, interest_id])
+  @@map("dualpost_interest")
+}
+
+model DualpostMaster {
+  dual_id                 Int           @id @default(autoincrement())
+  dual_image              String        @db.VarChar(255)
+  dual_posted_by          String        @db.VarChar(255)
+  dual_linked_to          Int
+  dual_linked_name        String        @db.VarChar(255)
+  dual_linked_profile_pic String        @db.VarChar(255)
+  dual_caption            String        @db.Text
+  video_url               String        @default("") @db.VarChar(255)
+  video_cost              String?       @db.VarChar(255)
+  dual_posted_name        String        @db.VarChar(255)
+  dual_posted_pic         String        @db.VarChar(255)
+  dual_date               String        @db.VarChar(255)
+  dual_time               String        @db.VarChar(255)
+  is_reported             String        @default("NO") @db.VarChar(255)
+  date_time               DateTime      @db.Timestamp(6)
+  dual_type               Int           @default(1)
+  view_count              Int           @default(0)
+  receiver_notes          String?       @db.Text
+  receiver_user_status    Int           @default(0)
+  payment_intent_id       String?       @db.VarChar(255)
+  payment_status          PaymentStatus @default(Complete)
+  collab_price            Decimal       @default(0.00) @db.Decimal(10, 2)
+  card_id                 String?       @db.VarChar(255)
+  tagged_users            String        @db.VarChar(255)
+
+  @@index([date_time], map: "DateTime")
+  @@index([dual_linked_to], map: "dual_linked_to_index")
+  @@map("dualpost_master")
+}
+
+model DualpostTag {
+  id      Int @id @default(autoincrement())
+  dual_id Int
+  user_id Int
+
+  @@unique([dual_id, user_id])
+  @@map("dualpost_tag")
+}
+
+model DualpostView {
+  dual_id Int
+  user_id Int
+
+  @@id([dual_id, user_id])
+  @@map("dualpost_view")
+}
+
+model FollowersMaster {
+  id           Int    @id @default(autoincrement())
+  followed_by  String @db.VarChar(255)
+  following_id String @db.VarChar(255)
+
+  @@index([followed_by])
+  @@map("followers_master")
+}
+
+model InterestMaster {
+  id    Int    @id @default(autoincrement())
+  name  String @db.VarChar(50)
+  image String @db.VarChar(255)
+
+  @@map("interest_master")
+}
+
+model LiveStreamMaster {
+  live_id            Int       @id @default(autoincrement())
+  live_by            String    @db.VarChar(255)
+  live_streamname    String    @db.VarChar(255)
+  live_thumb         String    @db.VarChar(255)
+  live_title         String    @db.VarChar(255)
+  live_cost          String    @db.VarChar(255)
+  viewersCount       String    @default("0") @db.VarChar(255)
+  is_reported        String    @default("NO") @db.VarChar(255)
+  pool_id            Int
+  last_checked_time  DateTime? @db.Timestamp(6)
+
+  @@map("liveStream_master")
+}
+
+model LoveMaster {
+  loved_by  Int
+  dual_id   Int
+  date_time DateTime @db.Timestamp(6)
+
+  @@id([loved_by, dual_id])
+  @@map("love_master")
+}
+
+model MessagesMaster {
+  message_id       Int      @id @default(autoincrement())
+  message_sender   String   @db.VarChar(255)
+  message_receiver String   @db.VarChar(255)
+  message_type     Int      @default(0)
+  message_url      String   @db.VarChar(500)
+  thumb_url        String   @db.VarChar(500)
+  dual_id          Int
+  message_content  String   @db.VarChar(1024)
+  is_deleted       String   @default("NO") @db.VarChar(255)
+  date_time        DateTime @db.Timestamp(6)
+
+  @@map("messages_master")
+}
+
+model MessageThread {
+  message_thread_id Int      @id @default(autoincrement())
+  message_sender    String   @db.VarChar(255)
+  message_receiver  String   @db.VarChar(255)
+  message_content   String   @db.VarChar(1024)
+  isunread          String   @default("YES") @db.VarChar(255)
+  is_deleted        String   @default("NO") @db.VarChar(255)
+  date_time         DateTime @db.Timestamp(6)
+
+  @@map("message_thread")
+}
+
+model MuteMaster {
+  user_id Int
+  mute_id Int
+
+  @@id([user_id, mute_id])
+  @@map("mute_master")
+}
+
+model NotificationsMaster {
+  notification_id         Int      @id @default(autoincrement())
+  notification_txt        String   @db.VarChar(255)
+  notification_type       Int      @default(0)
+  notification_sent_to    String   @db.VarChar(255)
+  notification_dual       String   @default("NO") @db.VarChar(255)
+  notification_venture    String   @default("NO") @db.VarChar(255)
+  notification_dual_id    String?  @db.VarChar(255)
+  notification_comment_id BigInt?
+  notification_venture_id String?  @db.VarChar(255)
+  shared_by               String?  @db.VarChar(255)
+  isunread                String   @default("YES") @db.VarChar(255)
+  date_time               DateTime @db.Timestamp(6)
+
+  @@map("notifications_master")
+}
+
+model SaveMaster {
+  saved_by  Int
+  dual_id   Int
+  date_time DateTime @db.Timestamp(6)
+
+  @@id([saved_by, dual_id])
+  @@map("save_master")
+}
+
+model StoryMaster {
+  story_id       Int      @id @default(autoincrement())
+  story_image    String   @default("") @db.VarChar(255)
+  story_posted_by Int
+  story_video    String   @default("") @db.VarChar(255)
+  story_type     Int
+  story_date     String   @db.VarChar(30)
+  story_time     String   @db.VarChar(30)
+  is_reported    Int      @default(0) @db.SmallInt
+  date_time      DateTime @default(now()) @db.Timestamp(6)
+  view_count     Int      @default(0)
+
+  @@map("story_master")
+}
+
+model UserBusiness {
+  user_id     Int
+  business_id Int
+
+  @@id([user_id, business_id])
+  @@map("user_business")
+}
+
+model UserCategory {
+  user_id     Int
+  category_id Int
+
+  @@id([user_id, category_id])
+  @@map("user_category")
+}
+
+model UserContact {
+  id      Int    @id @default(autoincrement())
+  user_id Int
+  email   String @db.VarChar(200)
+  phone   String @db.VarChar(50)
+
+  @@unique([user_id, email])
+  @@map("user_contact")
+}
+
+model UserInterest {
+  user_id     Int
+  interest_id Int
+
+  @@id([user_id, interest_id])
+  @@map("user_interest")
+}
+
+model UserMaster {
+  user_id            Int      @id @default(autoincrement())
+  user_pic           String?  @db.VarChar(255)
+  user_email         String   @db.VarChar(255)
+  user_full_name     String   @db.VarChar(255)
+  user_name          String   @db.VarChar(255)
+  user_pass          String   @db.VarChar(255)
+  user_location      String   @default("NA") @db.VarChar(255)
+  user_views         String   @default("0") @db.VarChar(255)
+  user_bio           String   @default("") @db.Text
+  user_state         String   @db.VarChar(50)
+  device_token       String   @default("NA") @db.VarChar(255)
+  device_type        String   @default("NA") @db.VarChar(255)
+  fb_id              String   @db.VarChar(50)
+  user_type          Int      @default(1) @db.SmallInt
+  hide_audience      Int      @default(0) @db.SmallInt
+  stripe_customer_id String?  @db.VarChar(255)
+  stripe_account_id  String?  @db.VarChar(255)
+  story_price        Decimal  @default(0.00) @db.Decimal(15, 2)
+  image_price        Decimal  @default(0.00) @db.Decimal(15, 2)
+  video_price        Decimal  @default(0.00) @db.Decimal(15, 2)
+  is_free_promo      Int      @default(0) @db.SmallInt
+
+  @@map("user_master")
+}
+
+model VentureMaster {
+  venture_id        Int    @id @default(autoincrement())
+  venture_url       String @db.VarChar(255)
+  venture_posted_by String @db.VarChar(255)
+  venture_thumb     String @db.VarChar(255)
+  venture_title     String @db.VarChar(255)
+  views_count       String @default("0") @db.VarChar(255)
+  is_reported       String @default("NO") @db.VarChar(255)
+
+  @@map("venture_master")
+}
+
+model VideosMaster {
+  video_id      Int      @id @default(autoincrement())
+  video_by      Int
+  video_thumb   String   @db.VarChar(255)
+  video_title   String   @db.VarChar(255)
+  video_url     String   @db.VarChar(255)
+  video_cost    String   @db.VarChar(255)
+  viewersCount  Int
+  is_reported   String   @default("NO") @db.VarChar(5)
+  date_time     DateTime @db.Timestamp(6)
+
+  @@map("videos_master")
+}
+
+model WowzaStreamMaster {
+  pool_id                 Int       @id @default(autoincrement())
+  stream_id               String    @db.VarChar(255)
+  name                    String    @db.VarChar(255)
+  primary_server          String    @db.VarChar(255)
+  host_port               String    @db.VarChar(255)
+  application             String    @db.VarChar(255)
+  stream_name             String    @db.VarChar(255)
+  player_hls_playback_url String    @db.VarChar(255)
+  info                    String    @db.Text
+  user_id                 String    @db.VarChar(255)
+  is_used                 Int       @default(0) @db.SmallInt
+  status                  String    @db.VarChar(255)
+  start_time              DateTime? @db.Timestamp(6)
+  stop_time               DateTime? @db.Timestamp(6)
+  last_checked_time       DateTime? @db.Timestamp(6)
+
+  @@map("wowza_stream_master")
+}

@@ -1,0 +1,1539 @@
+[
+  {
+    "file": "APICall.php",
+    "route": "/categories/APICall.php",
+    "includes": [],
+    "tables": []
+  },
+  {
+    "file": "addContacts.php",
+    "route": "/categories/addContacts.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "dualpost_master",
+      "email",
+      "followers_master",
+      "love_master",
+      "user_contact",
+      "user_master"
+    ]
+  },
+  {
+    "file": "addLivePost.php",
+    "route": "/categories/addLivePost.php",
+    "includes": [
+      "APICall.php",
+      "database.php"
+    ],
+    "tables": [
+      "base",
+      "liveStream_master",
+      "wowza_stream_master"
+    ]
+  },
+  {
+    "file": "addStory.php",
+    "route": "/categories/addStory.php",
+    "includes": [
+      "APICall.php",
+      "database.php"
+    ],
+    "tables": [
+      "base",
+      "story_master",
+      "user_master"
+    ]
+  },
+  {
+    "file": "addStripeCard.php",
+    "route": "/categories/addStripeCard.php",
+    "includes": [
+      "database.php",
+      "stripe.cls.php"
+    ],
+    "tables": [
+      "user_master"
+    ]
+  },
+  {
+    "file": "addVideoPost.php",
+    "route": "/categories/addVideoPost.php",
+    "includes": [
+      "APICall.php",
+      "database.php"
+    ],
+    "tables": [
+      "base",
+      "dualpost_category",
+      "dualpost_interest",
+      "dualpost_master",
+      "followers_master",
+      "notifications_master",
+      "user_master",
+      "videos_master"
+    ]
+  },
+  {
+    "file": "addVideoPost_12_jun-2021.php",
+    "route": "/categories/addVideoPost_12_jun-2021.php",
+    "includes": [
+      "APICall.php",
+      "database.php"
+    ],
+    "tables": [
+      "base",
+      "dualpost_category",
+      "dualpost_master",
+      "followers_master",
+      "user_master",
+      "videos_master"
+    ]
+  },
+  {
+    "file": "addviewer.php",
+    "route": "/categories/addviewer.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "liveStream_master"
+    ]
+  },
+  {
+    "file": "asking_set_price_notification.php",
+    "route": "/categories/asking_set_price_notification.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "notifications_master"
+    ]
+  },
+  {
+    "file": "block_user.php",
+    "route": "/categories/block_user.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "blocks_master"
+    ]
+  },
+  {
+    "file": "business.cls.php",
+    "route": "/categories/business.cls.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "business_master",
+      "user_business"
+    ]
+  },
+  {
+    "file": "category.cls.php",
+    "route": "/categories/category.cls.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "categories_master"
+    ]
+  },
+  {
+    "file": "change_pass.php",
+    "route": "/categories/change_pass.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "user_master"
+    ]
+  },
+  {
+    "file": "check_wowza.php",
+    "route": "/categories/check_wowza.php",
+    "includes": [
+      "APICall.php",
+      "database.php"
+    ],
+    "tables": [
+      "comments_master",
+      "file",
+      "liveStream_master",
+      "wowza_stream_master"
+    ]
+  },
+  {
+    "file": "checkblocking.php",
+    "route": "/categories/checkblocking.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "blocks_master"
+    ]
+  },
+  {
+    "file": "checkfollowing.php",
+    "route": "/categories/checkfollowing.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "followers_master"
+    ]
+  },
+  {
+    "file": "checkmute.php",
+    "route": "/categories/checkmute.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "mute_master"
+    ]
+  },
+  {
+    "file": "clearchat.php",
+    "route": "/categories/clearchat.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "message_thread",
+      "messages_master"
+    ]
+  },
+  {
+    "file": "create_wowza_stream.php",
+    "route": "/categories/create_wowza_stream.php",
+    "includes": [
+      "APICall.php",
+      "database.php"
+    ],
+    "tables": [
+      "wowza_stream_master"
+    ]
+  },
+  {
+    "file": "database.php",
+    "route": "/categories/database.php",
+    "includes": [
+      "mysql-wrapper.php"
+    ],
+    "tables": [
+      "mute_master",
+      "user_master"
+    ]
+  },
+  {
+    "file": "database2.php",
+    "route": "/categories/database2.php",
+    "includes": [],
+    "tables": [
+      "mute_master",
+      "user_master"
+    ]
+  },
+  {
+    "file": "delLive.php",
+    "route": "/categories/delLive.php",
+    "includes": [
+      "APICall.php",
+      "database.php"
+    ],
+    "tables": [
+      "comments_master",
+      "file",
+      "liveStream_master",
+      "wowza_stream_master"
+    ]
+  },
+  {
+    "file": "delUser.php",
+    "route": "/categories/delUser.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "comments_master",
+      "dualpost_master",
+      "followers_master",
+      "notifications_master",
+      "user_master",
+      "venture_master"
+    ]
+  },
+  {
+    "file": "delVenture.php",
+    "route": "/categories/delVenture.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "venture_master"
+    ]
+  },
+  {
+    "file": "deldualpost.php",
+    "route": "/categories/deldualpost.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "dualpost_category",
+      "dualpost_master",
+      "notifications_master",
+      "storage"
+    ]
+  },
+  {
+    "file": "deleteNotifications.php",
+    "route": "/categories/deleteNotifications.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "notifications_master"
+    ]
+  },
+  {
+    "file": "deleteStory.php",
+    "route": "/categories/deleteStory.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "storage",
+      "story_master"
+    ]
+  },
+  {
+    "file": "deleteStripeCard.php",
+    "route": "/categories/deleteStripeCard.php",
+    "includes": [
+      "database.php",
+      "stripe.cls.php"
+    ],
+    "tables": [
+      "user_master"
+    ]
+  },
+  {
+    "file": "follow_user.php",
+    "route": "/categories/follow_user.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "followers_master",
+      "notifications_master"
+    ]
+  },
+  {
+    "file": "forgot_pass.php",
+    "route": "/categories/forgot_pass.php",
+    "includes": [
+      "database.php",
+      "phpmailer/Exception.php",
+      "phpmailer/PHPMailer.php",
+      "phpmailer/SMTP.php"
+    ],
+    "tables": [
+      "user_master"
+    ]
+  },
+  {
+    "file": "getBrowse.php",
+    "route": "/categories/getBrowse.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "blocks_master",
+      "dualpost_category",
+      "dualpost_master",
+      "followers_master",
+      "love_master",
+      "save_master",
+      "user_master"
+    ]
+  },
+  {
+    "file": "getBrowse2.php",
+    "route": "/categories/getBrowse2.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "blocks_master",
+      "dualpost_category",
+      "dualpost_master",
+      "followers_master",
+      "love_master",
+      "save_master",
+      "user_master"
+    ]
+  },
+  {
+    "file": "getBrowse_20032020.php",
+    "route": "/categories/getBrowse_20032020.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "dualpost_category",
+      "dualpost_master",
+      "followers_master",
+      "love_master",
+      "save_master"
+    ]
+  },
+  {
+    "file": "getDualDet.php",
+    "route": "/categories/getDualDet.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "dualpost_master"
+    ]
+  },
+  {
+    "file": "getDualPostViews.php",
+    "route": "/categories/getDualPostViews.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "dualpost_view",
+      "user_master"
+    ]
+  },
+  {
+    "file": "getDuals.php",
+    "route": "/categories/getDuals.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "dualpost_master",
+      "followers_master",
+      "love_master"
+    ]
+  },
+  {
+    "file": "getDuals1.php",
+    "route": "/categories/getDuals1.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "blocks_master",
+      "dualpost_master",
+      "followers_master",
+      "love_master",
+      "save_master",
+      "user_master"
+    ]
+  },
+  {
+    "file": "getDuals2.php",
+    "route": "/categories/getDuals2.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "blocks_master",
+      "dualpost_master",
+      "followers_master",
+      "love_master",
+      "save_master",
+      "user_master"
+    ]
+  },
+  {
+    "file": "getDuals3.php",
+    "route": "/categories/getDuals3.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "blocks_master",
+      "dualpost_master",
+      "followers_master",
+      "love_master",
+      "save_master",
+      "user_master"
+    ]
+  },
+  {
+    "file": "getDuals4 25 Feb 26.php",
+    "route": "/categories/getDuals4 25 Feb 26.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "blocks_master",
+      "dualpost_master",
+      "followers_master",
+      "love_master",
+      "save_master",
+      "user_master"
+    ]
+  },
+  {
+    "file": "getDuals4.php",
+    "route": "/categories/getDuals4.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "blocks_master",
+      "dualpost_master",
+      "followers_master",
+      "love_master",
+      "save_master",
+      "user_master"
+    ]
+  },
+  {
+    "file": "getFollowers.php",
+    "route": "/categories/getFollowers.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "followers_master",
+      "user_master"
+    ]
+  },
+  {
+    "file": "getFollowers2.php",
+    "route": "/categories/getFollowers2.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "followers_master",
+      "user_master"
+    ]
+  },
+  {
+    "file": "getFollowing.php",
+    "route": "/categories/getFollowing.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "followers_master",
+      "user_master"
+    ]
+  },
+  {
+    "file": "getLiveFeed.php",
+    "route": "/categories/getLiveFeed.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "followers_master",
+      "user_master"
+    ]
+  },
+  {
+    "file": "getLoveDuals.php",
+    "route": "/categories/getLoveDuals.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "dualpost_master",
+      "love_master"
+    ]
+  },
+  {
+    "file": "getNotifications.php",
+    "route": "/categories/getNotifications.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "dualpost_master",
+      "notifications_master",
+      "user_master"
+    ]
+  },
+  {
+    "file": "getPostByInterest.php",
+    "route": "/categories/getPostByInterest.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "blocks_master",
+      "dualpost_interest",
+      "dualpost_master",
+      "followers_master",
+      "love_master",
+      "save_master",
+      "user_master"
+    ]
+  },
+  {
+    "file": "getPostFeed.php",
+    "route": "/categories/getPostFeed.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "dualpost_master",
+      "followers_master",
+      "user_master",
+      "users"
+    ]
+  },
+  {
+    "file": "getPostFeed2.php",
+    "route": "/categories/getPostFeed2.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "blocks_master",
+      "dualpost_master",
+      "followers_master",
+      "love_master",
+      "save_master",
+      "user_master",
+      "users"
+    ]
+  },
+  {
+    "file": "getPostFeed2_5_Jan_2024.php",
+    "route": "/categories/getPostFeed2_5_Jan_2024.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "blocks_master",
+      "dualpost_master",
+      "followers_master",
+      "love_master",
+      "save_master",
+      "user_master",
+      "users"
+    ]
+  },
+  {
+    "file": "getSaveDuals.php",
+    "route": "/categories/getSaveDuals.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "dualpost_master",
+      "love_master",
+      "save_master"
+    ]
+  },
+  {
+    "file": "getStories.php",
+    "route": "/categories/getStories.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "blocks_master",
+      "followers_master",
+      "story_master",
+      "user_master",
+      "users"
+    ]
+  },
+  {
+    "file": "getSuggestedVideos.php",
+    "route": "/categories/getSuggestedVideos.php",
+    "includes": [
+      "business.cls.php",
+      "database.php"
+    ],
+    "tables": [
+      "dualpost_master",
+      "followers_master",
+      "user_master"
+    ]
+  },
+  {
+    "file": "getTaggedUserDetails.php",
+    "route": "/categories/getTaggedUserDetails.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "user_master"
+    ]
+  },
+  {
+    "file": "getThread.php",
+    "route": "/categories/getThread.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "message_thread",
+      "user_master"
+    ]
+  },
+  {
+    "file": "getThread2.php",
+    "route": "/categories/getThread2.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "message_thread",
+      "user_master"
+    ]
+  },
+  {
+    "file": "getThread2_15112022.php",
+    "route": "/categories/getThread2_15112022.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "message_thread",
+      "user_master"
+    ]
+  },
+  {
+    "file": "getThread_20032020.php",
+    "route": "/categories/getThread_20032020.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "message_thread",
+      "user_master"
+    ]
+  },
+  {
+    "file": "getUserDetail.php",
+    "route": "/categories/getUserDetail.php",
+    "includes": [
+      "database.php",
+      "updateProfileViewCount.php"
+    ],
+    "tables": [
+      "dualpost_master",
+      "followers_master",
+      "love_master"
+    ]
+  },
+  {
+    "file": "getUserDetail_5_Jan_2024.php",
+    "route": "/categories/getUserDetail_5_Jan_2024.php",
+    "includes": [
+      "database.php",
+      "updateProfileViewCount.php"
+    ],
+    "tables": [
+      "dualpost_master",
+      "followers_master",
+      "love_master"
+    ]
+  },
+  {
+    "file": "getUserDuals.php",
+    "route": "/categories/getUserDuals.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "dualpost_master",
+      "love_master",
+      "message_thread",
+      "save_master"
+    ]
+  },
+  {
+    "file": "getUserDuals2.php",
+    "route": "/categories/getUserDuals2.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "dualpost_master",
+      "love_master",
+      "message_thread",
+      "save_master",
+      "user_master"
+    ]
+  },
+  {
+    "file": "getUserSuggession.php",
+    "route": "/categories/getUserSuggession.php",
+    "includes": [
+      "business.cls.php",
+      "database.php"
+    ],
+    "tables": [
+      "followers_master",
+      "user_contact",
+      "user_master"
+    ]
+  },
+  {
+    "file": "getVentureDet.php",
+    "route": "/categories/getVentureDet.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "user_master"
+    ]
+  },
+  {
+    "file": "getVentures.php",
+    "route": "/categories/getVentures.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "followers_master",
+      "user_master"
+    ]
+  },
+  {
+    "file": "get_comments.php",
+    "route": "/categories/get_comments.php",
+    "includes": [
+      "APICall.php",
+      "database.php"
+    ],
+    "tables": [
+      "liveStream_master",
+      "user_master"
+    ]
+  },
+  {
+    "file": "get_streams.php",
+    "route": "/categories/get_streams.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": []
+  },
+  {
+    "file": "getmessages.php",
+    "route": "/categories/getmessages.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "messages_master",
+      "user_master"
+    ]
+  },
+  {
+    "file": "getuserventure.php",
+    "route": "/categories/getuserventure.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "user_master"
+    ]
+  },
+  {
+    "file": "health.php",
+    "route": "/categories/health.php",
+    "includes": [
+      "storage.php"
+    ],
+    "tables": []
+  },
+  {
+    "file": "interest.cls.php",
+    "route": "/categories/interest.cls.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "interest_master"
+    ]
+  },
+  {
+    "file": "listStripeCard.php",
+    "route": "/categories/listStripeCard.php",
+    "includes": [
+      "database.php",
+      "stripe.cls.php"
+    ],
+    "tables": [
+      "user_master"
+    ]
+  },
+  {
+    "file": "login.php",
+    "route": "/categories/login.php",
+    "includes": [
+      "business.cls.php",
+      "category.cls.php",
+      "database.php",
+      "interest.cls.php",
+      "storage.php",
+      "stripe.cls.php"
+    ],
+    "tables": [
+      "dualpost_master",
+      "fb",
+      "followers_master",
+      "love_master",
+      "user_business",
+      "user_category",
+      "user_interest",
+      "user_master"
+    ]
+  },
+  {
+    "file": "login2.php",
+    "route": "/categories/login2.php",
+    "includes": [
+      "business.cls.php",
+      "category.cls.php",
+      "database.php",
+      "interest.cls.php",
+      "storage.php",
+      "stripe.cls.php"
+    ],
+    "tables": [
+      "dualpost_master",
+      "fb",
+      "followers_master",
+      "love_master",
+      "user_business",
+      "user_category",
+      "user_interest",
+      "user_master"
+    ]
+  },
+  {
+    "file": "login_test.php",
+    "route": "/categories/login_test.php",
+    "includes": [
+      "business.cls.php",
+      "category.cls.php",
+      "database.php",
+      "storage.php",
+      "stripe.cls.php"
+    ],
+    "tables": [
+      "dualpost_master",
+      "fb",
+      "followers_master",
+      "love_master",
+      "user_business",
+      "user_category",
+      "user_master"
+    ]
+  },
+  {
+    "file": "love_dual.php",
+    "route": "/categories/love_dual.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "dualpost_master",
+      "love_master",
+      "notifications_master"
+    ]
+  },
+  {
+    "file": "markRead.php",
+    "route": "/categories/markRead.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "message_thread"
+    ]
+  },
+  {
+    "file": "marknotification.php",
+    "route": "/categories/marknotification.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "notifications_master"
+    ]
+  },
+  {
+    "file": "mute_user.php",
+    "route": "/categories/mute_user.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "mute_master"
+    ]
+  },
+  {
+    "file": "mysql-wrapper.php",
+    "route": "/categories/mysql-wrapper.php",
+    "includes": [],
+    "tables": [
+      "a",
+      "db_name",
+      "php",
+      "phpclasses",
+      "stackoverflow",
+      "table"
+    ]
+  },
+  {
+    "file": "playvideo.php",
+    "route": "/categories/playvideo.php",
+    "includes": [],
+    "tables": []
+  },
+  {
+    "file": "postVenture.php",
+    "route": "/categories/postVenture.php",
+    "includes": [
+      "database.php",
+      "storage.php"
+    ],
+    "tables": [
+      "venture_master"
+    ]
+  },
+  {
+    "file": "post_comment.php",
+    "route": "/categories/post_comment.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "comments_master"
+    ]
+  },
+  {
+    "file": "post_dualPost.php",
+    "route": "/categories/post_dualPost.php",
+    "includes": [
+      "database.php",
+      "storage.php",
+      "stripe.cls.php"
+    ],
+    "tables": [
+      "dualpost_category",
+      "dualpost_interest",
+      "dualpost_master",
+      "followers_master",
+      "notifications_master",
+      "user_master"
+    ]
+  },
+  {
+    "file": "rejectDual.php",
+    "route": "/categories/rejectDual.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "dualpost_master",
+      "notifications_master"
+    ]
+  },
+  {
+    "file": "removeViewer.php",
+    "route": "/categories/removeViewer.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "liveStream_master"
+    ]
+  },
+  {
+    "file": "reportDual.php",
+    "route": "/categories/reportDual.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "dualpost_master"
+    ]
+  },
+  {
+    "file": "reportLive.php",
+    "route": "/categories/reportLive.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "liveStream_master"
+    ]
+  },
+  {
+    "file": "reportVenture.php",
+    "route": "/categories/reportVenture.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "venture_master"
+    ]
+  },
+  {
+    "file": "save_dual.php",
+    "route": "/categories/save_dual.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "dualpost_master",
+      "save_master"
+    ]
+  },
+  {
+    "file": "searchBusiness.php",
+    "route": "/categories/searchBusiness.php",
+    "includes": [
+      "business.cls.php",
+      "database.php"
+    ],
+    "tables": [
+      "blocks_master",
+      "business_master",
+      "user_business",
+      "user_master"
+    ]
+  },
+  {
+    "file": "searchLive.php",
+    "route": "/categories/searchLive.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "user_master"
+    ]
+  },
+  {
+    "file": "searchUser.php",
+    "route": "/categories/searchUser.php",
+    "includes": [
+      "business.cls.php",
+      "database.php"
+    ],
+    "tables": [
+      "blocks_master",
+      "user_master"
+    ]
+  },
+  {
+    "file": "searchUser2.php",
+    "route": "/categories/searchUser2.php",
+    "includes": [
+      "business.cls.php",
+      "database.php"
+    ],
+    "tables": [
+      "blocks_master",
+      "user_master"
+    ]
+  },
+  {
+    "file": "searchdualpost.php",
+    "route": "/categories/searchdualpost.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "dualpost_master"
+    ]
+  },
+  {
+    "file": "searchventure.php",
+    "route": "/categories/searchventure.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "user_master"
+    ]
+  },
+  {
+    "file": "selectUserBusiness.php",
+    "route": "/categories/selectUserBusiness.php",
+    "includes": [
+      "APICall.php",
+      "database.php"
+    ],
+    "tables": [
+      "user_business"
+    ]
+  },
+  {
+    "file": "selectUserCategory.php",
+    "route": "/categories/selectUserCategory.php",
+    "includes": [
+      "APICall.php",
+      "database.php"
+    ],
+    "tables": [
+      "user_category"
+    ]
+  },
+  {
+    "file": "selectUserInterest.php",
+    "route": "/categories/selectUserInterest.php",
+    "includes": [
+      "APICall.php",
+      "database.php"
+    ],
+    "tables": [
+      "user_interest"
+    ]
+  },
+  {
+    "file": "send_message.php",
+    "route": "/categories/send_message.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "base",
+      "message_thread",
+      "messages_master",
+      "user_master"
+    ]
+  },
+  {
+    "file": "send_notification.php",
+    "route": "/categories/send_notification.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "mute_master",
+      "user_master"
+    ]
+  },
+  {
+    "file": "send_notification_dev.php",
+    "route": "/categories/send_notification_dev.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "user_master"
+    ]
+  },
+  {
+    "file": "set_price.php",
+    "route": "/categories/set_price.php",
+    "includes": [
+      "database.php",
+      "stripe.cls.php"
+    ],
+    "tables": [
+      "settings",
+      "user_master"
+    ]
+  },
+  {
+    "file": "shareDual.php",
+    "route": "/categories/shareDual.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "notifications_master"
+    ]
+  },
+  {
+    "file": "shareVenture.php",
+    "route": "/categories/shareVenture.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "notifications_master"
+    ]
+  },
+  {
+    "file": "signup.php",
+    "route": "/categories/signup.php",
+    "includes": [
+      "business.cls.php",
+      "category.cls.php",
+      "database.php",
+      "interest.cls.php",
+      "storage.php",
+      "stripe.cls.php"
+    ],
+    "tables": [
+      "for",
+      "user_master"
+    ]
+  },
+  {
+    "file": "signup2.php",
+    "route": "/categories/signup2.php",
+    "includes": [
+      "business.cls.php",
+      "category.cls.php",
+      "database.php",
+      "storage.php",
+      "stripe.cls.php"
+    ],
+    "tables": [
+      "for",
+      "user_master"
+    ]
+  },
+  {
+    "file": "sqlite_users.php",
+    "route": "/categories/sqlite_users.php",
+    "includes": [],
+    "tables": [
+      "users"
+    ]
+  },
+  {
+    "file": "start_stream.php",
+    "route": "/categories/start_stream.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": []
+  },
+  {
+    "file": "startstream.php",
+    "route": "/categories/startstream.php",
+    "includes": [
+      "APICall.php",
+      "database.php"
+    ],
+    "tables": [
+      "3",
+      "liveStream_master",
+      "sending",
+      "wowza_stream_master"
+    ]
+  },
+  {
+    "file": "storage.php",
+    "route": "/categories/storage.php",
+    "includes": [],
+    "tables": []
+  },
+  {
+    "file": "stream_state.php",
+    "route": "/categories/stream_state.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": []
+  },
+  {
+    "file": "stripe.cls.php",
+    "route": "/categories/stripe.cls.php",
+    "includes": [
+      "vendor/autoload.php"
+    ],
+    "tables": [
+      "user_master"
+    ]
+  },
+  {
+    "file": "stripe_connect.php",
+    "route": "/categories/stripe_connect.php",
+    "includes": [
+      "database.php",
+      "stripe.cls.php"
+    ],
+    "tables": [
+      "user_master"
+    ]
+  },
+  {
+    "file": "stripe_redirect_url.php",
+    "route": "/categories/stripe_redirect_url.php",
+    "includes": [
+      "database.php",
+      "stripe.cls.php"
+    ],
+    "tables": [
+      "user_master"
+    ]
+  },
+  {
+    "file": "stripe_refresh.php",
+    "route": "/categories/stripe_refresh.php",
+    "includes": [
+      "database.php",
+      "stripe.cls.php"
+    ],
+    "tables": [
+      "user_master"
+    ]
+  },
+  {
+    "file": "stripe_success.php",
+    "route": "/categories/stripe_success.php",
+    "includes": [
+      "database.php",
+      "stripe.cls.php"
+    ],
+    "tables": [
+      "user_master"
+    ]
+  },
+  {
+    "file": "test.php",
+    "route": "/categories/test.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": []
+  },
+  {
+    "file": "test_curl.php",
+    "route": "/categories/test_curl.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": []
+  },
+  {
+    "file": "test_wowza.php",
+    "route": "/categories/test_wowza.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": []
+  },
+  {
+    "file": "testpush.php",
+    "route": "/categories/testpush.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "user_master"
+    ]
+  },
+  {
+    "file": "updateDual.php",
+    "route": "/categories/updateDual.php",
+    "includes": [
+      "database.php",
+      "stripe.cls.php"
+    ],
+    "tables": [
+      "dualpost_master",
+      "followers_master",
+      "notifications_master",
+      "user_master"
+    ]
+  },
+  {
+    "file": "updateDual_12_jun_2021.php",
+    "route": "/categories/updateDual_12_jun_2021.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "dualpost_master",
+      "followers_master",
+      "notifications_master",
+      "user_master"
+    ]
+  },
+  {
+    "file": "updateProfile.php",
+    "route": "/categories/updateProfile.php",
+    "includes": [
+      "business.cls.php",
+      "category.cls.php",
+      "database.php",
+      "interest.cls.php",
+      "storage.php"
+    ],
+    "tables": [
+      "dualpost_master",
+      "followers_master",
+      "love_master",
+      "pic",
+      "profile",
+      "user_business",
+      "user_category",
+      "user_interest",
+      "user_master"
+    ]
+  },
+  {
+    "file": "updateProfileViewCount.php",
+    "route": "/categories/updateProfileViewCount.php",
+    "includes": [],
+    "tables": [
+      "user_master",
+      "view"
+    ]
+  },
+  {
+    "file": "updateVentureCount.php",
+    "route": "/categories/updateVentureCount.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "venture_master"
+    ]
+  },
+  {
+    "file": "uploadVenture.php",
+    "route": "/categories/uploadVenture.php",
+    "includes": [
+      "storage.php"
+    ],
+    "tables": []
+  },
+  {
+    "file": "viewDualPost.php",
+    "route": "/categories/viewDualPost.php",
+    "includes": [
+      "database.php",
+      "updateProfileViewCount.php"
+    ],
+    "tables": [
+      "dualpost_master",
+      "dualpost_view",
+      "profile",
+      "v2"
+    ]
+  },
+  {
+    "file": "wantDual.php",
+    "route": "/categories/wantDual.php",
+    "includes": [
+      "database.php"
+    ],
+    "tables": [
+      "dualpost_master",
+      "followers_master",
+      "love_master",
+      "notifications_master"
+    ]
+  }
+]

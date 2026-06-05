@@ -1,0 +1,867 @@
+[
+  {
+    "table": "blocks_master",
+    "columns": [
+      {
+        "name": "user_id",
+        "definition": "varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL"
+      },
+      {
+        "name": "block_id",
+        "definition": "varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL"
+      }
+    ]
+  },
+  {
+    "table": "business_master",
+    "columns": [
+      {
+        "name": "id",
+        "definition": "int NOT NULL"
+      },
+      {
+        "name": "name",
+        "definition": "varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL"
+      }
+    ]
+  },
+  {
+    "table": "categories_master",
+    "columns": [
+      {
+        "name": "id",
+        "definition": "int NOT NULL"
+      },
+      {
+        "name": "name",
+        "definition": "varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL"
+      },
+      {
+        "name": "image",
+        "definition": "varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL"
+      }
+    ]
+  },
+  {
+    "table": "comments_master",
+    "columns": [
+      {
+        "name": "comment_id",
+        "definition": "int NOT NULL"
+      },
+      {
+        "name": "comment_by",
+        "definition": "varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL"
+      },
+      {
+        "name": "comment_txt",
+        "definition": "varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL"
+      },
+      {
+        "name": "broadcast_id",
+        "definition": "varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL"
+      }
+    ]
+  },
+  {
+    "table": "dualpost_category",
+    "columns": [
+      {
+        "name": "dual_id",
+        "definition": "int NOT NULL"
+      },
+      {
+        "name": "category_id",
+        "definition": "int NOT NULL"
+      }
+    ]
+  },
+  {
+    "table": "dualpost_comment",
+    "columns": [
+      {
+        "name": "comment_id",
+        "definition": "bigint NOT NULL"
+      },
+      {
+        "name": "dual_id",
+        "definition": "bigint NOT NULL"
+      },
+      {
+        "name": "parent_id",
+        "definition": "bigint DEFAULT NULL"
+      },
+      {
+        "name": "thread_id",
+        "definition": "bigint DEFAULT NULL"
+      },
+      {
+        "name": "comment_by",
+        "definition": "bigint NOT NULL"
+      },
+      {
+        "name": "comment_type",
+        "definition": "enum('text'"
+      },
+      {
+        "name": "comment",
+        "definition": "blob NOT NULL"
+      },
+      {
+        "name": "created_date",
+        "definition": "datetime NOT NULL"
+      }
+    ]
+  },
+  {
+    "table": "dualpost_comment_love",
+    "columns": [
+      {
+        "name": "loved_by",
+        "definition": "bigint NOT NULL"
+      },
+      {
+        "name": "comment_id",
+        "definition": "bigint NOT NULL"
+      },
+      {
+        "name": "created_date",
+        "definition": "datetime NOT NULL"
+      }
+    ]
+  },
+  {
+    "table": "dualpost_interest",
+    "columns": [
+      {
+        "name": "dual_id",
+        "definition": "int NOT NULL"
+      },
+      {
+        "name": "interest_id",
+        "definition": "int NOT NULL"
+      }
+    ]
+  },
+  {
+    "table": "dualpost_master",
+    "columns": [
+      {
+        "name": "dual_id",
+        "definition": "int NOT NULL"
+      },
+      {
+        "name": "dual_image",
+        "definition": "varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL"
+      },
+      {
+        "name": "dual_posted_by",
+        "definition": "varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL"
+      },
+      {
+        "name": "dual_linked_to",
+        "definition": "int NOT NULL"
+      },
+      {
+        "name": "dual_linked_name",
+        "definition": "varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL"
+      },
+      {
+        "name": "dual_linked_profile_pic",
+        "definition": "varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL"
+      },
+      {
+        "name": "dual_caption",
+        "definition": "text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL"
+      },
+      {
+        "name": "video_url",
+        "definition": "varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT ''"
+      },
+      {
+        "name": "video_cost",
+        "definition": "varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL"
+      },
+      {
+        "name": "dual_posted_name",
+        "definition": "varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL"
+      },
+      {
+        "name": "dual_posted_pic",
+        "definition": "varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL"
+      },
+      {
+        "name": "dual_date",
+        "definition": "varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL"
+      },
+      {
+        "name": "dual_time",
+        "definition": "varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL"
+      },
+      {
+        "name": "is_reported",
+        "definition": "varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT 'NO'"
+      },
+      {
+        "name": "date_time",
+        "definition": "datetime NOT NULL"
+      },
+      {
+        "name": "dual_type",
+        "definition": "int NOT NULL DEFAULT '1' COMMENT '1 = Dual post Image"
+      },
+      {
+        "name": "view_count",
+        "definition": "int NOT NULL DEFAULT '0'"
+      },
+      {
+        "name": "receiver_notes",
+        "definition": "text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin"
+      },
+      {
+        "name": "receiver_user_status",
+        "definition": "int NOT NULL DEFAULT '0'"
+      },
+      {
+        "name": "payment_intent_id",
+        "definition": "varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL"
+      },
+      {
+        "name": "payment_status",
+        "definition": "enum('Pending'"
+      },
+      {
+        "name": "collab_price",
+        "definition": "decimal(10"
+      },
+      {
+        "name": "card_id",
+        "definition": "varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL"
+      },
+      {
+        "name": "tagged_users",
+        "definition": "varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL"
+      }
+    ]
+  },
+  {
+    "table": "dualpost_tag",
+    "columns": [
+      {
+        "name": "id",
+        "definition": "int NOT NULL"
+      },
+      {
+        "name": "dual_id",
+        "definition": "int NOT NULL"
+      },
+      {
+        "name": "user_id",
+        "definition": "int NOT NULL"
+      }
+    ]
+  },
+  {
+    "table": "dualpost_view",
+    "columns": [
+      {
+        "name": "dual_id",
+        "definition": "int NOT NULL"
+      },
+      {
+        "name": "user_id",
+        "definition": "int NOT NULL"
+      }
+    ]
+  },
+  {
+    "table": "followers_master",
+    "columns": [
+      {
+        "name": "id",
+        "definition": "int NOT NULL"
+      },
+      {
+        "name": "followed_by",
+        "definition": "varchar(255) NOT NULL"
+      },
+      {
+        "name": "following_id",
+        "definition": "varchar(255) NOT NULL"
+      }
+    ]
+  },
+  {
+    "table": "interest_master",
+    "columns": [
+      {
+        "name": "id",
+        "definition": "int NOT NULL"
+      },
+      {
+        "name": "name",
+        "definition": "varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL"
+      },
+      {
+        "name": "image",
+        "definition": "varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL"
+      }
+    ]
+  },
+  {
+    "table": "liveStream_master",
+    "columns": [
+      {
+        "name": "live_id",
+        "definition": "int NOT NULL"
+      },
+      {
+        "name": "live_by",
+        "definition": "varchar(255) NOT NULL"
+      },
+      {
+        "name": "live_streamname",
+        "definition": "varchar(255) NOT NULL"
+      },
+      {
+        "name": "live_thumb",
+        "definition": "varchar(255) NOT NULL"
+      },
+      {
+        "name": "live_title",
+        "definition": "varchar(255) NOT NULL"
+      },
+      {
+        "name": "live_cost",
+        "definition": "varchar(255) NOT NULL"
+      },
+      {
+        "name": "viewersCount",
+        "definition": "varchar(255) NOT NULL DEFAULT '0'"
+      },
+      {
+        "name": "is_reported",
+        "definition": "varchar(255) NOT NULL DEFAULT 'NO'"
+      },
+      {
+        "name": "pool_id",
+        "definition": "int NOT NULL"
+      },
+      {
+        "name": "last_checked_time",
+        "definition": "datetime DEFAULT NULL"
+      }
+    ]
+  },
+  {
+    "table": "love_master",
+    "columns": [
+      {
+        "name": "loved_by",
+        "definition": "int NOT NULL"
+      },
+      {
+        "name": "dual_id",
+        "definition": "int NOT NULL"
+      },
+      {
+        "name": "date_time",
+        "definition": "datetime NOT NULL"
+      }
+    ]
+  },
+  {
+    "table": "messages_master",
+    "columns": [
+      {
+        "name": "message_id",
+        "definition": "int NOT NULL"
+      },
+      {
+        "name": "message_sender",
+        "definition": "varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL"
+      },
+      {
+        "name": "message_receiver",
+        "definition": "varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL"
+      },
+      {
+        "name": "message_type",
+        "definition": "int NOT NULL DEFAULT '0' COMMENT '0=text"
+      },
+      {
+        "name": "message_url",
+        "definition": "varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL"
+      },
+      {
+        "name": "thumb_url",
+        "definition": "varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL"
+      },
+      {
+        "name": "dual_id",
+        "definition": "int NOT NULL"
+      },
+      {
+        "name": "message_content",
+        "definition": "varchar(1024) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL"
+      },
+      {
+        "name": "is_deleted",
+        "definition": "varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT 'NO'"
+      },
+      {
+        "name": "date_time",
+        "definition": "datetime NOT NULL"
+      }
+    ]
+  },
+  {
+    "table": "message_thread",
+    "columns": [
+      {
+        "name": "message_thread_id",
+        "definition": "int NOT NULL"
+      },
+      {
+        "name": "message_sender",
+        "definition": "varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL"
+      },
+      {
+        "name": "message_receiver",
+        "definition": "varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL"
+      },
+      {
+        "name": "message_content",
+        "definition": "varchar(1024) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL"
+      },
+      {
+        "name": "isunread",
+        "definition": "varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT 'YES'"
+      },
+      {
+        "name": "is_deleted",
+        "definition": "varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT 'NO'"
+      },
+      {
+        "name": "date_time",
+        "definition": "datetime NOT NULL"
+      }
+    ]
+  },
+  {
+    "table": "mute_master",
+    "columns": [
+      {
+        "name": "user_id",
+        "definition": "int NOT NULL"
+      },
+      {
+        "name": "mute_id",
+        "definition": "int NOT NULL"
+      }
+    ]
+  },
+  {
+    "table": "notifications_master",
+    "columns": [
+      {
+        "name": "notification_id",
+        "definition": "int NOT NULL"
+      },
+      {
+        "name": "notification_txt",
+        "definition": "varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL"
+      },
+      {
+        "name": "notification_type",
+        "definition": "int NOT NULL DEFAULT '0' COMMENT '0=Common"
+      },
+      {
+        "name": "notification_sent_to",
+        "definition": "varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL"
+      },
+      {
+        "name": "notification_dual",
+        "definition": "varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT 'NO'"
+      },
+      {
+        "name": "notification_venture",
+        "definition": "varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT 'NO'"
+      },
+      {
+        "name": "notification_dual_id",
+        "definition": "varchar(255) DEFAULT NULL"
+      },
+      {
+        "name": "notification_comment_id",
+        "definition": "bigint DEFAULT NULL"
+      },
+      {
+        "name": "notification_venture_id",
+        "definition": "varchar(255) DEFAULT NULL"
+      },
+      {
+        "name": "shared_by",
+        "definition": "varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL"
+      },
+      {
+        "name": "isunread",
+        "definition": "varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT 'YES'"
+      },
+      {
+        "name": "date_time",
+        "definition": "datetime NOT NULL"
+      }
+    ]
+  },
+  {
+    "table": "save_master",
+    "columns": [
+      {
+        "name": "saved_by",
+        "definition": "int NOT NULL"
+      },
+      {
+        "name": "dual_id",
+        "definition": "int NOT NULL"
+      },
+      {
+        "name": "date_time",
+        "definition": "datetime NOT NULL"
+      }
+    ]
+  },
+  {
+    "table": "story_master",
+    "columns": [
+      {
+        "name": "story_id",
+        "definition": "int NOT NULL"
+      },
+      {
+        "name": "story_image",
+        "definition": "varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ''"
+      },
+      {
+        "name": "story_posted_by",
+        "definition": "int NOT NULL"
+      },
+      {
+        "name": "story_video",
+        "definition": "varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ''"
+      },
+      {
+        "name": "story_type",
+        "definition": "int NOT NULL COMMENT '1 = Image"
+      },
+      {
+        "name": "story_date",
+        "definition": "varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL"
+      },
+      {
+        "name": "story_time",
+        "definition": "varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL"
+      },
+      {
+        "name": "is_reported",
+        "definition": "tinyint(1) NOT NULL DEFAULT '0'"
+      },
+      {
+        "name": "date_time",
+        "definition": "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP"
+      },
+      {
+        "name": "view_count",
+        "definition": "int NOT NULL DEFAULT '0'"
+      }
+    ]
+  },
+  {
+    "table": "user_business",
+    "columns": [
+      {
+        "name": "user_id",
+        "definition": "int NOT NULL"
+      },
+      {
+        "name": "business_id",
+        "definition": "int NOT NULL"
+      }
+    ]
+  },
+  {
+    "table": "user_category",
+    "columns": [
+      {
+        "name": "user_id",
+        "definition": "int NOT NULL"
+      },
+      {
+        "name": "category_id",
+        "definition": "int NOT NULL"
+      }
+    ]
+  },
+  {
+    "table": "user_contact",
+    "columns": [
+      {
+        "name": "id",
+        "definition": "int NOT NULL"
+      },
+      {
+        "name": "user_id",
+        "definition": "int NOT NULL"
+      },
+      {
+        "name": "email",
+        "definition": "varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL"
+      },
+      {
+        "name": "phone",
+        "definition": "varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL"
+      }
+    ]
+  },
+  {
+    "table": "user_interest",
+    "columns": [
+      {
+        "name": "user_id",
+        "definition": "int NOT NULL"
+      },
+      {
+        "name": "interest_id",
+        "definition": "int NOT NULL"
+      }
+    ]
+  },
+  {
+    "table": "user_master",
+    "columns": [
+      {
+        "name": "user_id",
+        "definition": "int NOT NULL"
+      },
+      {
+        "name": "user_pic",
+        "definition": "varchar(255) DEFAULT NULL"
+      },
+      {
+        "name": "user_email",
+        "definition": "varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL"
+      },
+      {
+        "name": "user_full_name",
+        "definition": "varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL"
+      },
+      {
+        "name": "user_name",
+        "definition": "varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL"
+      },
+      {
+        "name": "user_pass",
+        "definition": "varchar(255) NOT NULL"
+      },
+      {
+        "name": "user_location",
+        "definition": "varchar(255) NOT NULL DEFAULT 'NA'"
+      },
+      {
+        "name": "user_views",
+        "definition": "varchar(255) NOT NULL DEFAULT '0'"
+      },
+      {
+        "name": "user_bio",
+        "definition": "text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL"
+      },
+      {
+        "name": "user_state",
+        "definition": "varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL"
+      },
+      {
+        "name": "device_token",
+        "definition": "varchar(255) NOT NULL DEFAULT 'NA'"
+      },
+      {
+        "name": "device_type",
+        "definition": "varchar(255) NOT NULL DEFAULT 'NA'"
+      },
+      {
+        "name": "fb_id",
+        "definition": "varchar(50) NOT NULL"
+      },
+      {
+        "name": "user_type",
+        "definition": "tinyint NOT NULL DEFAULT '1' COMMENT '1 - Business\\r\\n2 - Influence'"
+      },
+      {
+        "name": "hide_audience",
+        "definition": "tinyint(1) NOT NULL DEFAULT '0'"
+      },
+      {
+        "name": "stripe_customer_id",
+        "definition": "varchar(255) DEFAULT NULL"
+      },
+      {
+        "name": "stripe_account_id",
+        "definition": "varchar(255) DEFAULT NULL"
+      },
+      {
+        "name": "story_price",
+        "definition": "decimal(15"
+      },
+      {
+        "name": "image_price",
+        "definition": "decimal(15"
+      },
+      {
+        "name": "video_price",
+        "definition": "decimal(15"
+      },
+      {
+        "name": "is_free_promo",
+        "definition": "tinyint(1) NOT NULL DEFAULT '0'"
+      }
+    ]
+  },
+  {
+    "table": "venture_master",
+    "columns": [
+      {
+        "name": "venture_id",
+        "definition": "int NOT NULL"
+      },
+      {
+        "name": "venture_url",
+        "definition": "varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL"
+      },
+      {
+        "name": "venture_posted_by",
+        "definition": "varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL"
+      },
+      {
+        "name": "venture_thumb",
+        "definition": "varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL"
+      },
+      {
+        "name": "venture_title",
+        "definition": "varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL"
+      },
+      {
+        "name": "views_count",
+        "definition": "varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '0'"
+      },
+      {
+        "name": "is_reported",
+        "definition": "varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT 'NO'"
+      }
+    ]
+  },
+  {
+    "table": "videos_master",
+    "columns": [
+      {
+        "name": "video_id",
+        "definition": "int NOT NULL"
+      },
+      {
+        "name": "video_by",
+        "definition": "int NOT NULL"
+      },
+      {
+        "name": "video_thumb",
+        "definition": "varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL"
+      },
+      {
+        "name": "video_title",
+        "definition": "varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL"
+      },
+      {
+        "name": "video_url",
+        "definition": "varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL"
+      },
+      {
+        "name": "video_cost",
+        "definition": "varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL"
+      },
+      {
+        "name": "viewersCount",
+        "definition": "int NOT NULL"
+      },
+      {
+        "name": "is_reported",
+        "definition": "varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'NO'"
+      },
+      {
+        "name": "date_time",
+        "definition": "datetime NOT NULL"
+      }
+    ]
+  },
+  {
+    "table": "wowza_stream_master",
+    "columns": [
+      {
+        "name": "pool_id",
+        "definition": "int NOT NULL"
+      },
+      {
+        "name": "stream_id",
+        "definition": "varchar(255) NOT NULL"
+      },
+      {
+        "name": "name",
+        "definition": "varchar(255) NOT NULL"
+      },
+      {
+        "name": "primary_server",
+        "definition": "varchar(255) NOT NULL"
+      },
+      {
+        "name": "host_port",
+        "definition": "varchar(255) NOT NULL"
+      },
+      {
+        "name": "application",
+        "definition": "varchar(255) NOT NULL"
+      },
+      {
+        "name": "stream_name",
+        "definition": "varchar(255) NOT NULL"
+      },
+      {
+        "name": "player_hls_playback_url",
+        "definition": "varchar(255) NOT NULL"
+      },
+      {
+        "name": "info",
+        "definition": "text NOT NULL"
+      },
+      {
+        "name": "user_id",
+        "definition": "varchar(255) NOT NULL"
+      },
+      {
+        "name": "is_used",
+        "definition": "tinyint(1) NOT NULL DEFAULT '0'"
+      },
+      {
+        "name": "status",
+        "definition": "varchar(255) NOT NULL"
+      },
+      {
+        "name": "start_time",
+        "definition": "datetime DEFAULT NULL"
+      },
+      {
+        "name": "stop_time",
+        "definition": "datetime DEFAULT NULL"
+      },
+      {
+        "name": "last_checked_time",
+        "definition": "datetime DEFAULT NULL"
+      }
+    ]
+  }
+]

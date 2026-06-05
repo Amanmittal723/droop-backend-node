@@ -1,0 +1,912 @@
+[
+  {
+    "route": "/categories/APICall.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/addContacts.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/addLivePost.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/addStory.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/addStripeCard.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/addVideoPost.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/addVideoPost_12_jun-2021.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/addviewer.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/asking_set_price_notification.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/block_user.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/business.cls.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/category.cls.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/change_pass.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/check_wowza.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/checkblocking.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/checkfollowing.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/checkmute.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/clearchat.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/create_wowza_stream.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/database.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/database2.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/delLive.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/delUser.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/delVenture.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/deldualpost.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/deleteNotifications.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/deleteStory.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/deleteStripeCard.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/follow_user.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/forgot_pass.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/getBrowse.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/getBrowse2.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/getBrowse_20032020.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/getDualDet.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/getDualPostViews.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/getDuals.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/getDuals1.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/getDuals2.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/getDuals3.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/getDuals4 25 Feb 26.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/getDuals4.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/getFollowers.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/getFollowers2.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/getFollowing.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/getLiveFeed.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/getLoveDuals.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/getNotifications.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/getPostByInterest.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/getPostFeed.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/getPostFeed2.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/getPostFeed2_5_Jan_2024.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/getSaveDuals.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/getStories.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/getSuggestedVideos.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/getTaggedUserDetails.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/getThread.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/getThread2.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/getThread2_15112022.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/getThread_20032020.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/getUserDetail.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/getUserDetail_5_Jan_2024.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/getUserDuals.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/getUserDuals2.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/getUserSuggession.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/getVentureDet.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/getVentures.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/get_comments.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/get_streams.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/getmessages.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/getuserventure.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/health.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/interest.cls.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/listStripeCard.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/login.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/login2.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/login_test.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/love_dual.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/markRead.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/marknotification.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/mute_user.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/mysql-wrapper.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/playvideo.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/postVenture.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/post_comment.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/post_dualPost.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/rejectDual.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/removeViewer.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/reportDual.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/reportLive.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/reportVenture.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/save_dual.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/searchBusiness.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/searchLive.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/searchUser.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/searchUser2.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/searchdualpost.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/searchventure.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/selectUserBusiness.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/selectUserCategory.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/selectUserInterest.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/send_message.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/send_notification.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/send_notification_dev.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/set_price.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/shareDual.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/shareVenture.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/signup.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/signup2.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/sqlite_users.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/start_stream.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/startstream.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/storage.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/stream_state.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/stripe.cls.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/stripe_connect.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/stripe_redirect_url.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/stripe_refresh.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/stripe_success.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/test.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/test_curl.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/test_wowza.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/testpush.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/updateDual.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/updateDual_12_jun_2021.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/updateProfile.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/updateProfileViewCount.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/updateVentureCount.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/uploadVenture.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/viewDualPost.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  },
+  {
+    "route": "/categories/wantDual.php",
+    "sampleRequest": {},
+    "expectedPhpResponse": null,
+    "expectedHttpStatus": 200,
+    "notes": "Populate with captured PHP fixture before marking endpoint complete."
+  }
+]
