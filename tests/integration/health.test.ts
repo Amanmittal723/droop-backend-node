@@ -3,12 +3,12 @@
  * Expected request body: None.
  * Expected query parameters: None.
  * Expected headers: None.
- * Expected response structure: Legacy health.php JSON payload with status, timestamp, and checks fields.
+ * Expected response structure: Legacy health JSON payload with status, timestamp, and checks fields.
  */
 import request from "supertest";
 import { createApp } from "../../src/app";
 
-describe("GET /categories/health.php", () => {
+describe("GET /categories/health", () => {
   it("returns the legacy health response shape", async () => {
     const app = createApp({
       prismaClient: {
@@ -16,7 +16,7 @@ describe("GET /categories/health.php", () => {
       } as never
     });
 
-    const response = await request(app).get("/categories/health.php");
+    const response = await request(app).get("/categories/health");
 
     expect([200, 503]).toContain(response.status);
     expect(response.body).toHaveProperty("status");
@@ -24,7 +24,7 @@ describe("GET /categories/health.php", () => {
     expect(response.body).toHaveProperty("checks");
   });
 
-  it("keeps the root and /categories aliases in sync for health.php", async () => {
+  it("keeps the root and /categories aliases in sync for health", async () => {
     const app = createApp({
       prismaClient: {
         $queryRaw: jest.fn().mockResolvedValue([{ server_version: "PostgreSQL test" }])
@@ -32,8 +32,8 @@ describe("GET /categories/health.php", () => {
     });
 
     const [rootResponse, categoriesResponse] = await Promise.all([
-      request(app).get("/health.php"),
-      request(app).get("/categories/health.php")
+      request(app).get("/health"),
+      request(app).get("/categories/health")
     ]);
 
     expect(rootResponse.status).toBe(categoriesResponse.status);

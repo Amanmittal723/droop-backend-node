@@ -5,8 +5,8 @@
  * Expected headers: None.
  * Expected response structure: Raw rows and counters for suggestion and follow queries.
  */
-import { LegacyRow } from "../../lib/legacy-row";
-import { escapeSql } from "../../lib/legacy-sql";
+import { LegacyRow } from "../lib/legacy-row";
+import { escapeSql } from "../lib/legacy-sql";
 import { LegacyBaseRepository } from "./base-repository";
 
 export class LegacyFollowRepository extends LegacyBaseRepository {

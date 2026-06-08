@@ -9,10 +9,10 @@ import fs from "node:fs/promises";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import { Request, Response } from "express";
-import { getLegacyOptionalString } from "../../lib/legacy-request";
-import { LegacyRow } from "../../lib/legacy-row";
-import { sendLegacyJson } from "../../lib/legacy-response";
-import { escapeSql } from "../../lib/legacy-sql";
+import { getLegacyOptionalString } from "../lib/legacy-request";
+import { LegacyRow } from "../lib/legacy-row";
+import { sendLegacyJson } from "../lib/legacy-response";
+import { escapeSql } from "../lib/legacy-sql";
 import { LegacyBaseController, LegacyControllerDependencies } from "./base-controller";
 
 const execFileAsync = promisify(execFile);

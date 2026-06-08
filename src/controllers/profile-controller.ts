@@ -6,11 +6,11 @@
  * Expected response structure: Legacy JSON payloads with status, message, and detailed user data.
  */
 import { Request, Response } from "express";
-import { getLegacyOptionalString, getLegacyString } from "../../lib/legacy-request";
-import { sendLegacyJson } from "../../lib/legacy-response";
-import { legacyRandomString } from "../../lib/random";
-import { legacyStorageDiskPath, legacyStoragePublicUrl, writeBase64File } from "../../lib/storage";
-import { escapeSql } from "../../lib/legacy-sql";
+import { getLegacyOptionalString, getLegacyString } from "../lib/legacy-request";
+import { sendLegacyJson } from "../lib/legacy-response";
+import { legacyRandomString } from "../lib/random";
+import { legacyStorageDiskPath, legacyStoragePublicUrl, writeBase64File } from "../lib/storage";
+import { escapeSql } from "../lib/legacy-sql";
 import { LegacyBaseController, LegacyControllerDependencies } from "./base-controller";
 
 export class LegacyProfileController extends LegacyBaseController {

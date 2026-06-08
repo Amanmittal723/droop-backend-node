@@ -6,10 +6,10 @@
  * Expected response structure: Legacy JSON payloads with status, message, data, or url.
  */
 import { Request, Response } from "express";
-import { getLegacyOptionalString, getLegacyString } from "../../lib/legacy-request";
-import { sendLegacyJson } from "../../lib/legacy-response";
-import { legacyRandomString } from "../../lib/random";
-import { legacyStorageDiskPath, legacyStoragePublicUrl, writeBase64File } from "../../lib/storage";
+import { getLegacyOptionalString, getLegacyString } from "../lib/legacy-request";
+import { sendLegacyJson } from "../lib/legacy-response";
+import { legacyRandomString } from "../lib/random";
+import { legacyStorageDiskPath, legacyStoragePublicUrl, writeBase64File } from "../lib/storage";
 import { LegacyBaseController, LegacyControllerDependencies } from "./base-controller";
 
 export class LegacyVentureController extends LegacyBaseController {

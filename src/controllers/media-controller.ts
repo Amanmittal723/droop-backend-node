@@ -8,15 +8,15 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { Request, Response } from "express";
-import { env } from "../../config/env";
-import { legacyNowString } from "../../lib/legacy-datetime";
-import { buildLegacyRouteAssetUrl, deleteAssetIfPresent, getUploadedFile, saveBase64Buffer, saveUploadedBuffer } from "../../lib/legacy-media";
-import { getLegacyOptionalString, getLegacyString } from "../../lib/legacy-request";
-import { sendLegacyJson } from "../../lib/legacy-response";
-import { legacyRandomString } from "../../lib/random";
-import { legacyStorageDiskPath, legacyStoragePublicUrl } from "../../lib/storage";
-import { csvToList, escapeSql, numericList } from "../../lib/legacy-sql";
-import { LegacyRow } from "../../lib/legacy-row";
+import { env } from "../config/env";
+import { legacyNowString } from "../lib/legacy-datetime";
+import { buildLegacyRouteAssetUrl, deleteAssetIfPresent, getUploadedFile, saveBase64Buffer, saveUploadedBuffer } from "../lib/legacy-media";
+import { getLegacyOptionalString, getLegacyString } from "../lib/legacy-request";
+import { sendLegacyJson } from "../lib/legacy-response";
+import { legacyRandomString } from "../lib/random";
+import { legacyStorageDiskPath, legacyStoragePublicUrl } from "../lib/storage";
+import { csvToList, escapeSql, numericList } from "../lib/legacy-sql";
+import { LegacyRow } from "../lib/legacy-row";
 import { LegacyBaseController, LegacyControllerDependencies } from "./base-controller";
 
 export class LegacyMediaController extends LegacyBaseController {

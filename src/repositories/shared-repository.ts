@@ -5,9 +5,9 @@
  * Expected headers: None.
  * Expected response structure: Raw rows and shared write helpers.
  */
-import { LegacyRow } from "../../lib/legacy-row";
-import { legacyNowString } from "../../lib/legacy-datetime";
-import { escapeSql } from "../../lib/legacy-sql";
+import { LegacyRow } from "../lib/legacy-row";
+import { legacyNowString } from "../lib/legacy-datetime";
+import { escapeSql } from "../lib/legacy-sql";
 import { LegacyBaseRepository } from "./base-repository";
 
 export class LegacySharedRepository extends LegacyBaseRepository {

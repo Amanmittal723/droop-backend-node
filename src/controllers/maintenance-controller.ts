@@ -6,9 +6,9 @@
  * Expected response structure: Legacy JSON payloads with status, message, and optional data.
  */
 import { Request, Response } from "express";
-import { getLegacyString } from "../../lib/legacy-request";
-import { sendLegacyJson } from "../../lib/legacy-response";
-import { escapeSql } from "../../lib/legacy-sql";
+import { getLegacyString } from "../lib/legacy-request";
+import { sendLegacyJson } from "../lib/legacy-response";
+import { escapeSql } from "../lib/legacy-sql";
 import { LegacyBaseController, LegacyControllerDependencies } from "./base-controller";
 
 export class LegacyMaintenanceController extends LegacyBaseController {

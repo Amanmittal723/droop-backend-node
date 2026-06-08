@@ -6,7 +6,7 @@
  * Expected response structure: Raw rows and execution primitives matching legacy SQL usage.
  */
 import { PrismaClient } from "@prisma/client";
-import { LegacyRow } from "../../lib/legacy-row";
+import { LegacyRow } from "../lib/legacy-row";
 
 export class LegacyBaseRepository {
   public constructor(protected readonly prismaClient: PrismaClient) {}

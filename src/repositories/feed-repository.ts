@@ -5,8 +5,8 @@
  * Expected headers: None.
  * Expected response structure: Raw rows and totals matching legacy PHP feed queries.
  */
-import { LegacyRow } from "../../lib/legacy-row";
-import { escapeSql } from "../../lib/legacy-sql";
+import { LegacyRow } from "../lib/legacy-row";
+import { escapeSql } from "../lib/legacy-sql";
 import { LegacyBaseRepository } from "./base-repository";
 
 type DualFeedOptions = {

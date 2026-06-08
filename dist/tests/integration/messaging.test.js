@@ -13,7 +13,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const supertest_1 = __importDefault(require("supertest"));
 const app_1 = require("../../src/app");
 describe("message compatibility endpoints", () => {
-    it("returns the legacy no-thread response for getmessages.php", async () => {
+    it("returns the legacy no-thread response for getmessages", async () => {
         const prismaClient = {
             $queryRaw: jest.fn().mockResolvedValueOnce([
                 {
@@ -26,7 +26,7 @@ describe("message compatibility endpoints", () => {
             $queryRawUnsafe: jest.fn().mockResolvedValueOnce([])
         };
         const app = (0, app_1.createApp)({ prismaClient });
-        const response = await (0, supertest_1.default)(app).post("/categories/getmessages.php").send({
+        const response = await (0, supertest_1.default)(app).post("/categories/getmessages").send({
             user_id: "1",
             friend_id: "2"
         });

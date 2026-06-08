@@ -8,14 +8,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * Expected request body: email.
  * Expected query parameters: None.
  * Expected headers: Standard HTTP headers.
- * Expected response structure: Legacy JSON payload with status and message values from forgot_pass.php.
+ * Expected response structure: Legacy JSON payload with status and message values from forgot_pass.
  */
 const supertest_1 = __importDefault(require("supertest"));
 const app_1 = require("../../src/app");
 describe("forgot_pass compatibility endpoint", () => {
     it("returns the legacy missing-email response", async () => {
         const app = (0, app_1.createApp)({ prismaClient: {} });
-        const response = await (0, supertest_1.default)(app).post("/categories/forgot_pass.php").send({});
+        const response = await (0, supertest_1.default)(app).post("/categories/forgot_pass").send({});
         expect(response.status).toBe(200);
         expect(response.body).toEqual({
             status: "0",
@@ -38,7 +38,7 @@ describe("forgot_pass compatibility endpoint", () => {
             sendRecoveryMail: jest.fn().mockResolvedValue(true)
         };
         const app = (0, app_1.createApp)({ prismaClient, mailService });
-        const response = await (0, supertest_1.default)(app).post("/categories/forgot_pass.php").send({ email: "jane@example.com" });
+        const response = await (0, supertest_1.default)(app).post("/categories/forgot_pass").send({ email: "jane@example.com" });
         expect(response.status).toBe(200);
         expect(response.body).toEqual({
             status: "1",

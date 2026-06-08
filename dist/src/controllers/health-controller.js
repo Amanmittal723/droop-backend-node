@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.HealthController = void 0;
 /**
- * Purpose: Recreate the legacy health.php endpoint structure while checking the Node runtime and PostgreSQL dependencies.
+ * Purpose: Recreate the legacy health endpoint structure while checking the Node runtime and PostgreSQL dependencies.
  * Expected request body: None.
  * Expected query parameters: None.
  * Expected headers: Standard HTTP headers.

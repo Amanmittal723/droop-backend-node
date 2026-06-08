@@ -15,22 +15,22 @@ const promises_1 = __importDefault(require("node:fs/promises"));
 const node_path_1 = __importDefault(require("node:path"));
 const app_1 = require("../../src/app");
 describe("story compatibility endpoints", () => {
-    it("returns the legacy invalid-request response for deleteStory.php", async () => {
+    it("returns the legacy invalid-request response for deleteStory", async () => {
         const app = (0, app_1.createApp)({ prismaClient: {} });
-        const response = await (0, supertest_1.default)(app).post("/categories/deleteStory.php").send({ user_id: "1" });
+        const response = await (0, supertest_1.default)(app).post("/categories/deleteStory").send({ user_id: "1" });
         expect(response.status).toBe(200);
         expect(response.body).toEqual({
             status: "0",
             message: "Invalid Request"
         });
     });
-    it("returns the legacy no-story response for getStories.php", async () => {
+    it("returns the legacy no-story response for getStories", async () => {
         const prismaClient = {
             $queryRaw: jest.fn().mockResolvedValueOnce([]).mockResolvedValueOnce([]).mockResolvedValueOnce([]),
             $queryRawUnsafe: jest.fn().mockResolvedValueOnce([])
         };
         const app = (0, app_1.createApp)({ prismaClient });
-        const response = await (0, supertest_1.default)(app).post("/categories/getStories.php").send({ user_id: "1" });
+        const response = await (0, supertest_1.default)(app).post("/categories/getStories").send({ user_id: "1" });
         expect(response.status).toBe(200);
         expect(response.body).toEqual({
             status: "0",
@@ -53,7 +53,7 @@ describe("story compatibility endpoints", () => {
             ])
         };
         const app = (0, app_1.createApp)({ prismaClient });
-        const response = await (0, supertest_1.default)(app).post("/categories/getStories.php").send({ user_id: "2" });
+        const response = await (0, supertest_1.default)(app).post("/categories/getStories").send({ user_id: "2" });
         expect(response.status).toBe(200);
         expect(response.body).toEqual({
             status: "1",
@@ -78,7 +78,7 @@ describe("story compatibility endpoints", () => {
             ]
         });
     });
-    it("accepts a large multipart text field on addStory.php without Multer rejecting it", async () => {
+    it("accepts a large multipart text field on addStory without Multer rejecting it", async () => {
         const prismaClient = {
             $queryRaw: jest
                 .fn()
@@ -103,7 +103,7 @@ describe("story compatibility endpoints", () => {
         };
         const app = (0, app_1.createApp)({ prismaClient });
         const response = await (0, supertest_1.default)(app)
-            .post("/addStory.php")
+            .post("/addStory")
             .field("user_id", "2")
             .field("story_type", "1")
             .field("story_date", "2026-06-05")
@@ -141,7 +141,7 @@ describe("story compatibility endpoints", () => {
         await promises_1.default.rm(storyDirectory, { recursive: true, force: true });
         const app = (0, app_1.createApp)({ prismaClient });
         const response = await (0, supertest_1.default)(app)
-            .post("/addStory.php")
+            .post("/addStory")
             .field("user_id", "2")
             .field("story_type", "1")
             .field("story_date", "2026-06-05")

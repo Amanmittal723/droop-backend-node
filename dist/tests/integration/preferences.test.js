@@ -15,7 +15,7 @@ const app_1 = require("../../src/app");
 describe("preference compatibility endpoints", () => {
     it("returns the legacy missing-data response for category selection", async () => {
         const app = (0, app_1.createApp)({ prismaClient: {} });
-        const response = await (0, supertest_1.default)(app).post("/categories/selectUserCategory.php").send({});
+        const response = await (0, supertest_1.default)(app).post("/categories/selectUserCategory").send({});
         expect(response.status).toBe(200);
         expect(response.body).toEqual({
             status: "0",
@@ -29,7 +29,7 @@ describe("preference compatibility endpoints", () => {
             $executeRawUnsafe: jest.fn()
         };
         const app = (0, app_1.createApp)({ prismaClient });
-        const response = await (0, supertest_1.default)(app).post("/categories/selectUserBusiness.php").send({
+        const response = await (0, supertest_1.default)(app).post("/categories/selectUserBusiness").send({
             user_id: "1",
             business_ids: "2,3"
         });

@@ -6,10 +6,10 @@
  * Expected response structure: Legacy JSON payloads with status, message, data, total, seed, and random_start keys.
  */
 import { Request, Response } from "express";
-import { getLegacyOptionalString, getLegacyString } from "../../lib/legacy-request";
-import { sendLegacyJson } from "../../lib/legacy-response";
-import { LegacyRow } from "../../lib/legacy-row";
-import { escapeSql } from "../../lib/legacy-sql";
+import { getLegacyOptionalString, getLegacyString } from "../lib/legacy-request";
+import { sendLegacyJson } from "../lib/legacy-response";
+import { LegacyRow } from "../lib/legacy-row";
+import { escapeSql } from "../lib/legacy-sql";
 import { LegacyBaseController, LegacyControllerDependencies } from "./base-controller";
 
 export class LegacyFollowController extends LegacyBaseController {

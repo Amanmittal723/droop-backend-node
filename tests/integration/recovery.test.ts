@@ -3,7 +3,7 @@
  * Expected request body: email.
  * Expected query parameters: None.
  * Expected headers: Standard HTTP headers.
- * Expected response structure: Legacy JSON payload with status and message values from forgot_pass.php.
+ * Expected response structure: Legacy JSON payload with status and message values from forgot_pass.
  */
 import request from "supertest";
 import { createApp } from "../../src/app";
@@ -11,7 +11,7 @@ import { createApp } from "../../src/app";
 describe("forgot_pass compatibility endpoint", () => {
   it("returns the legacy missing-email response", async () => {
     const app = createApp({ prismaClient: {} as never });
-    const response = await request(app).post("/categories/forgot_pass.php").send({});
+    const response = await request(app).post("/categories/forgot_pass").send({});
     expect(response.status).toBe(200);
     expect(response.body).toEqual({
       status: "0",
@@ -36,7 +36,7 @@ describe("forgot_pass compatibility endpoint", () => {
     } as never;
 
     const app = createApp({ prismaClient, mailService });
-    const response = await request(app).post("/categories/forgot_pass.php").send({ email: "jane@example.com" });
+    const response = await request(app).post("/categories/forgot_pass").send({ email: "jane@example.com" });
 
     expect(response.status).toBe(200);
     expect(response.body).toEqual({

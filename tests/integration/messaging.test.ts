@@ -9,7 +9,7 @@ import request from "supertest";
 import { createApp } from "../../src/app";
 
 describe("message compatibility endpoints", () => {
-  it("returns the legacy no-thread response for getmessages.php", async () => {
+  it("returns the legacy no-thread response for getmessages", async () => {
     const prismaClient = {
       $queryRaw: jest.fn().mockResolvedValueOnce([
         {
@@ -23,7 +23,7 @@ describe("message compatibility endpoints", () => {
     } as never;
 
     const app = createApp({ prismaClient });
-    const response = await request(app).post("/categories/getmessages.php").send({
+    const response = await request(app).post("/categories/getmessages").send({
       user_id: "1",
       friend_id: "2"
     });

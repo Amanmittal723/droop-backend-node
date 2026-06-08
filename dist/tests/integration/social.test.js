@@ -13,9 +13,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const supertest_1 = __importDefault(require("supertest"));
 const app_1 = require("../../src/app");
 describe("social compatibility endpoints", () => {
-    it("returns the legacy invalid-request payload for follow_user.php", async () => {
+    it("returns the legacy invalid-request payload for follow_user", async () => {
         const app = (0, app_1.createApp)({ prismaClient: {} });
-        const response = await (0, supertest_1.default)(app).post("/categories/follow_user.php").send({
+        const response = await (0, supertest_1.default)(app).post("/categories/follow_user").send({
             followed_by: "",
             following_id: "2",
             user_name: "Aryan",
@@ -29,7 +29,7 @@ describe("social compatibility endpoints", () => {
     });
     it("returns the legacy old-password-required payload", async () => {
         const app = (0, app_1.createApp)({ prismaClient: {} });
-        const response = await (0, supertest_1.default)(app).post("/categories/change_pass.php").send({
+        const response = await (0, supertest_1.default)(app).post("/categories/change_pass").send({
             user_id: "1",
             new_password: "next"
         });
@@ -61,7 +61,7 @@ describe("social compatibility endpoints", () => {
             ])
         };
         const app = (0, app_1.createApp)({ prismaClient });
-        const response = await (0, supertest_1.default)(app).post("/categories/getSuggestedVideos.php").send({ user_id: "1" });
+        const response = await (0, supertest_1.default)(app).post("/categories/getSuggestedVideos").send({ user_id: "1" });
         expect(response.status).toBe(200);
         expect(response.body).toEqual({
             status: "1",

@@ -5,8 +5,8 @@
  * Expected headers: None.
  * Expected response structure: Raw inserted or queried rows for media endpoints.
  */
-import { LegacyRow } from "../../lib/legacy-row";
-import { escapeSql } from "../../lib/legacy-sql";
+import { LegacyRow } from "../lib/legacy-row";
+import { escapeSql } from "../lib/legacy-sql";
 import { LegacyBaseRepository } from "./base-repository";
 
 export class LegacyMediaRepository extends LegacyBaseRepository {

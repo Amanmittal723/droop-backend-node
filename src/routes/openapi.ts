@@ -15,7 +15,7 @@ const document = {
     version: "0.1.0"
   },
   paths: {
-    "/health.php": {
+    "/health": {
       get: {
         summary: "Compatibility health check",
         responses: {
@@ -23,7 +23,7 @@ const document = {
         }
       }
     },
-    "/login.php": {
+    "/login": {
       post: {
         summary: "Legacy login endpoint",
         responses: {
@@ -31,7 +31,7 @@ const document = {
         }
       }
     },
-    "/signup.php": {
+    "/signup": {
       post: {
         summary: "Legacy signup endpoint",
         responses: {
@@ -39,7 +39,7 @@ const document = {
         }
       }
     },
-    "/categories/health.php": {
+    "/categories/health": {
       get: {
         summary: "Compatibility health check",
         responses: {
@@ -47,7 +47,7 @@ const document = {
         }
       }
     },
-    "/categories/login.php": {
+    "/categories/login": {
       post: {
         summary: "Legacy login endpoint",
         responses: {
@@ -55,7 +55,7 @@ const document = {
         }
       }
     },
-    "/categories/signup.php": {
+    "/categories/signup": {
       post: {
         summary: "Legacy signup endpoint",
         responses: {

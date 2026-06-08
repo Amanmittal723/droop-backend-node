@@ -7,18 +7,18 @@
  */
 import { Request } from "express";
 import { PrismaClient } from "@prisma/client";
-import { getLegacyOptionalString } from "../../lib/legacy-request";
-import { ApnsService } from "../../services/apns-service";
-import { StripeService } from "../../services/stripe-service";
-import { WowzaService } from "../../services/wowza-service";
-import { LegacyCommentRepository } from "../../repositories/legacy/comment-repository";
-import { LegacyFeedRepository } from "../../repositories/legacy/feed-repository";
-import { LegacyFollowRepository } from "../../repositories/legacy/follow-repository";
-import { LegacyMediaRepository } from "../../repositories/legacy/media-repository";
-import { LegacyProfileRepository } from "../../repositories/legacy/profile-repository";
-import { LegacySearchRepository } from "../../repositories/legacy/search-repository";
-import { LegacySharedRepository } from "../../repositories/legacy/shared-repository";
-import { LegacyVentureRepository } from "../../repositories/legacy/venture-repository";
+import { getLegacyOptionalString } from "../lib/legacy-request";
+import { ApnsService } from "../services/apns-service";
+import { StripeService } from "../services/stripe-service";
+import { WowzaService } from "../services/wowza-service";
+import { LegacyCommentRepository } from "../repositories/comment-repository";
+import { LegacyFeedRepository } from "../repositories/feed-repository";
+import { LegacyFollowRepository } from "../repositories/follow-repository";
+import { LegacyMediaRepository } from "../repositories/media-repository";
+import { LegacyProfileRepository } from "../repositories/profile-repository";
+import { LegacySearchRepository } from "../repositories/search-repository";
+import { LegacySharedRepository } from "../repositories/shared-repository";
+import { LegacyVentureRepository } from "../repositories/venture-repository";
 
 export type LegacyControllerDependencies = {
   prismaClient: PrismaClient;

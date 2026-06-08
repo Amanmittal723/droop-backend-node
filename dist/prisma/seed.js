@@ -1,108 +1,55 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
- * Purpose: Seed reference tables needed for application startup by extracting business, category, and interest data from the legacy SQL dump.
+ * Purpose: Seed the reference lookup tables needed for application startup.
  * Expected request body: None.
  * Expected query parameters: None.
  * Expected headers: None.
- * Expected response structure: Console output indicating whether reference seeds were applied.
+ * Expected response structure: Console output indicating which reference seeds were applied.
  */
-const promises_1 = __importDefault(require("node:fs/promises"));
+require("dotenv/config");
 const client_1 = require("@prisma/client");
-const env_1 = require("../src/config/env");
+const seed_data_1 = require("./seed-data");
+process.env.DATABASE_URL ??= "postgresql://postgres:postgres@localhost:5432/droop_backend_node";
 const prisma = new client_1.PrismaClient();
-function extractInsertValues(sql, tableName) {
-    const pattern = new RegExp(`INSERT INTO \\\`${tableName}\\\` \\([^;]+?\\) VALUES\\s*([\\s\\S]*?);`, "g");
-    const matches = [];
-    let match;
-    while ((match = pattern.exec(sql)) !== null) {
-        matches.push(match[1]);
+async function upsertBusinesses() {
+    for (const business of seed_data_1.seedBusinesses) {
+        await prisma.businessMaster.upsert({
+            where: { id: business.id },
+            create: business,
+            update: { name: business.name }
+        });
     }
-    return matches;
 }
-function parseTuples(valuesBlock) {
-    const tuples = [];
-    let current = "";
-    let inString = false;
-    let depth = 0;
-    const tupleStrings = [];
-    for (let index = 0; index < valuesBlock.length; index += 1) {
-        const char = valuesBlock[index];
-        const previous = valuesBlock[index - 1];
-        if (char === "'" && previous !== "\\") {
-            inString = !inString;
-        }
-        if (!inString && char === "(") {
-            if (depth === 0) {
-                current = "";
+async function upsertCategories() {
+    for (const category of seed_data_1.seedCategories) {
+        await prisma.categoriesMaster.upsert({
+            where: { id: category.id },
+            create: category,
+            update: {
+                name: category.name,
+                image: category.image
             }
-            else {
-                current += char;
-            }
-            depth += 1;
-            continue;
-        }
-        if (!inString && char === ")") {
-            depth -= 1;
-            if (depth === 0) {
-                tupleStrings.push(current);
-                current = "";
-                continue;
-            }
-        }
-        if (depth > 0) {
-            current += char;
-        }
+        });
     }
-    for (const tuple of tupleStrings) {
-        const values = [];
-        let part = "";
-        let quoted = false;
-        for (let index = 0; index < tuple.length; index += 1) {
-            const char = tuple[index];
-            const previous = tuple[index - 1];
-            if (char === "'" && previous !== "\\") {
-                quoted = !quoted;
-                continue;
+}
+async function upsertInterests() {
+    for (const interest of seed_data_1.seedInterests) {
+        await prisma.interestMaster.upsert({
+            where: { id: interest.id },
+            create: interest,
+            update: {
+                name: interest.name,
+                image: interest.image
             }
-            if (char === "," && !quoted) {
-                values.push(part.trim().replace(/\\'/g, "'"));
-                part = "";
-                continue;
-            }
-            part += char;
-        }
-        values.push(part.trim().replace(/\\'/g, "'"));
-        tuples.push(values);
+        });
     }
-    return tuples;
 }
 async function main() {
-    const dump = await promises_1.default.readFile(env_1.env.LEGACY_SQL_DUMP, "utf8");
-    const businessRows = extractInsertValues(dump, "business_master").flatMap(parseTuples);
-    const categoryRows = extractInsertValues(dump, "categories_master").flatMap(parseTuples);
-    const interestRows = extractInsertValues(dump, "interest_master").flatMap(parseTuples);
-    if (businessRows.length > 0) {
-        await prisma.businessMaster.createMany({
-            data: businessRows.map(([id, name]) => ({ id: Number(id), name })),
-            skipDuplicates: true
-        });
-    }
-    if (categoryRows.length > 0) {
-        await prisma.categoriesMaster.createMany({
-            data: categoryRows.map(([id, name, image]) => ({ id: Number(id), name, image })),
-            skipDuplicates: true
-        });
-    }
-    if (interestRows.length > 0) {
-        await prisma.interestMaster.createMany({
-            data: interestRows.map(([id, name, image]) => ({ id: Number(id), name, image })),
-            skipDuplicates: true
-        });
-    }
+    await upsertBusinesses();
+    await upsertCategories();
+    await upsertInterests();
+    console.log(`Seeded reference data: ${seed_data_1.seedBusinesses.length} businesses, ${seed_data_1.seedCategories.length} categories, ${seed_data_1.seedInterests.length} interests.`);
 }
 void main()
     .finally(async () => {

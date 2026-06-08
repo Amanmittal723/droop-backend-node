@@ -6,9 +6,9 @@
  * Expected response structure: Legacy JSON payloads with status, message, data, and viewerCount.
  */
 import { Request, Response } from "express";
-import { getLegacyString } from "../../lib/legacy-request";
-import { sendLegacyJson } from "../../lib/legacy-response";
-import { legacyNowString } from "../../lib/legacy-datetime";
+import { getLegacyString } from "../lib/legacy-request";
+import { sendLegacyJson } from "../lib/legacy-response";
+import { legacyNowString } from "../lib/legacy-datetime";
 import { LegacyBaseController, LegacyControllerDependencies } from "./base-controller";
 
 export class LegacyCommentController extends LegacyBaseController {

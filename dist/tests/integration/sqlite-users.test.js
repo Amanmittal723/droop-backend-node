@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
- * Purpose: Verify that sqlite_users.php still queries the legacy SQLite database instead of returning a stub.
+ * Purpose: Verify that sqlite_users still queries the legacy SQLite database instead of returning a stub.
  * Expected request body: None.
  * Expected query parameters: username, limit, and include_hash.
  * Expected headers: Standard HTTP headers.
@@ -35,7 +35,7 @@ describe("sqlite_users compatibility endpoint", () => {
         try {
             const app = (0, app_1.createApp)({ prismaClient: {} });
             const response = await (0, supertest_1.default)(app)
-                .get("/categories/sqlite_users.php")
+                .get("/categories/sqlite_users")
                 .query({ username: "jane", include_hash: "0" });
             expect(response.status).toBe(200);
             expect(response.body).toMatchObject({

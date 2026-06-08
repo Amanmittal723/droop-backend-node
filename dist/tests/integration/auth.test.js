@@ -14,7 +14,7 @@ const supertest_1 = __importDefault(require("supertest"));
 const app_1 = require("../../src/app");
 const stripeService = {
     createCustomer: jest.fn().mockResolvedValue({ status: "0", message: "Stripe is not configured", data: {} }),
-    connectUrl: jest.fn().mockReturnValue("http://localhost:3001/categories/stripe_connect.php?user_id=1")
+    connectUrl: jest.fn().mockReturnValue("http://localhost:3001/categories/stripe_connect?user_id=1")
 };
 describe("auth compatibility endpoints", () => {
     it("returns the legacy signup validation error when username is blank", async () => {
@@ -25,7 +25,7 @@ describe("auth compatibility endpoints", () => {
                 .mockResolvedValueOnce([])
         };
         const app = (0, app_1.createApp)({ prismaClient, stripeService });
-        const response = await (0, supertest_1.default)(app).post("/categories/signup.php").send({
+        const response = await (0, supertest_1.default)(app).post("/categories/signup").send({
             name: "Test User",
             email: "test@example.com",
             pass: "secret",
@@ -51,7 +51,7 @@ describe("auth compatibility endpoints", () => {
             ])
         };
         const app = (0, app_1.createApp)({ prismaClient, stripeService });
-        const response = await (0, supertest_1.default)(app).post("/login.php").send({
+        const response = await (0, supertest_1.default)(app).post("/login").send({
             username: "existing",
             password: "wrong-password",
             device_token: "abcdefghijklmnop",
@@ -63,7 +63,7 @@ describe("auth compatibility endpoints", () => {
             message: "Invalid username or password"
         });
     });
-    it("keeps /categories/login.php wired to the legacy login behavior", async () => {
+    it("keeps /categories/login wired to the legacy login behavior", async () => {
         const prismaClient = {
             $queryRaw: jest.fn().mockResolvedValue([
                 {
@@ -74,7 +74,7 @@ describe("auth compatibility endpoints", () => {
             ])
         };
         const app = (0, app_1.createApp)({ prismaClient, stripeService });
-        const response = await (0, supertest_1.default)(app).post("/categories/login.php").send({
+        const response = await (0, supertest_1.default)(app).post("/categories/login").send({
             username: "existing",
             password: "wrong-password",
             device_token: "abcdefghijklmnop",
@@ -86,7 +86,7 @@ describe("auth compatibility endpoints", () => {
             message: "Invalid username or password"
         });
     });
-    it("keeps login_test.php wired to the legacy login behavior", async () => {
+    it("keeps login_test wired to the legacy login behavior", async () => {
         const prismaClient = {
             $queryRaw: jest.fn().mockResolvedValue([
                 {
@@ -97,7 +97,7 @@ describe("auth compatibility endpoints", () => {
             ])
         };
         const app = (0, app_1.createApp)({ prismaClient, stripeService });
-        const response = await (0, supertest_1.default)(app).post("/login_test.php").send({
+        const response = await (0, supertest_1.default)(app).post("/login_test").send({
             username: "existing",
             password: "wrong-password",
             device_token: "abcdefghijklmnop",

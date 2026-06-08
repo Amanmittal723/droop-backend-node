@@ -8,32 +8,32 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * Expected request body: None.
  * Expected query parameters: None.
  * Expected headers: None.
- * Expected response structure: Legacy health.php JSON payload with status, timestamp, and checks fields.
+ * Expected response structure: Legacy health JSON payload with status, timestamp, and checks fields.
  */
 const supertest_1 = __importDefault(require("supertest"));
 const app_1 = require("../../src/app");
-describe("GET /categories/health.php", () => {
+describe("GET /categories/health", () => {
     it("returns the legacy health response shape", async () => {
         const app = (0, app_1.createApp)({
             prismaClient: {
                 $queryRaw: jest.fn().mockResolvedValue([{ server_version: "PostgreSQL test" }])
             }
         });
-        const response = await (0, supertest_1.default)(app).get("/categories/health.php");
+        const response = await (0, supertest_1.default)(app).get("/categories/health");
         expect([200, 503]).toContain(response.status);
         expect(response.body).toHaveProperty("status");
         expect(response.body).toHaveProperty("timestamp");
         expect(response.body).toHaveProperty("checks");
     });
-    it("keeps the root and /categories aliases in sync for health.php", async () => {
+    it("keeps the root and /categories aliases in sync for health", async () => {
         const app = (0, app_1.createApp)({
             prismaClient: {
                 $queryRaw: jest.fn().mockResolvedValue([{ server_version: "PostgreSQL test" }])
             }
         });
         const [rootResponse, categoriesResponse] = await Promise.all([
-            (0, supertest_1.default)(app).get("/health.php"),
-            (0, supertest_1.default)(app).get("/categories/health.php")
+            (0, supertest_1.default)(app).get("/health"),
+            (0, supertest_1.default)(app).get("/categories/health")
         ]);
         expect(rootResponse.status).toBe(categoriesResponse.status);
         expect(rootResponse.body.status).toBe(categoriesResponse.body.status);

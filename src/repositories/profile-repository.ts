@@ -5,9 +5,9 @@
  * Expected headers: None.
  * Expected response structure: Raw rows and scalar values shaped like the PHP backend queries.
  */
-import { LegacyRow } from "../../lib/legacy-row";
-import { legacyNowString } from "../../lib/legacy-datetime";
-import { escapeSql } from "../../lib/legacy-sql";
+import { LegacyRow } from "../lib/legacy-row";
+import { legacyNowString } from "../lib/legacy-datetime";
+import { escapeSql } from "../lib/legacy-sql";
 import { LegacyBaseRepository } from "./base-repository";
 
 export class LegacyProfileRepository extends LegacyBaseRepository {

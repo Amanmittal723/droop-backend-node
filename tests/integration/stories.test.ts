@@ -11,9 +11,9 @@ import path from "node:path";
 import { createApp } from "../../src/app";
 
 describe("story compatibility endpoints", () => {
-  it("returns the legacy invalid-request response for deleteStory.php", async () => {
+  it("returns the legacy invalid-request response for deleteStory", async () => {
     const app = createApp({ prismaClient: {} as never });
-    const response = await request(app).post("/categories/deleteStory.php").send({ user_id: "1" });
+    const response = await request(app).post("/categories/deleteStory").send({ user_id: "1" });
     expect(response.status).toBe(200);
     expect(response.body).toEqual({
       status: "0",
@@ -21,14 +21,14 @@ describe("story compatibility endpoints", () => {
     });
   });
 
-  it("returns the legacy no-story response for getStories.php", async () => {
+  it("returns the legacy no-story response for getStories", async () => {
     const prismaClient = {
       $queryRaw: jest.fn().mockResolvedValueOnce([]).mockResolvedValueOnce([]).mockResolvedValueOnce([]),
       $queryRawUnsafe: jest.fn().mockResolvedValueOnce([])
     } as never;
 
     const app = createApp({ prismaClient });
-    const response = await request(app).post("/categories/getStories.php").send({ user_id: "1" });
+    const response = await request(app).post("/categories/getStories").send({ user_id: "1" });
 
     expect(response.status).toBe(200);
     expect(response.body).toEqual({
@@ -54,7 +54,7 @@ describe("story compatibility endpoints", () => {
     } as never;
 
     const app = createApp({ prismaClient });
-    const response = await request(app).post("/categories/getStories.php").send({ user_id: "2" });
+    const response = await request(app).post("/categories/getStories").send({ user_id: "2" });
 
     expect(response.status).toBe(200);
     expect(response.body).toEqual({
@@ -81,7 +81,7 @@ describe("story compatibility endpoints", () => {
     });
   });
 
-  it("accepts a large multipart text field on addStory.php without Multer rejecting it", async () => {
+  it("accepts a large multipart text field on addStory without Multer rejecting it", async () => {
     const prismaClient = {
       $queryRaw: jest
         .fn()
@@ -107,7 +107,7 @@ describe("story compatibility endpoints", () => {
 
     const app = createApp({ prismaClient });
     const response = await request(app)
-      .post("/addStory.php")
+      .post("/addStory")
       .field("user_id", "2")
       .field("story_type", "1")
       .field("story_date", "2026-06-05")
@@ -149,7 +149,7 @@ describe("story compatibility endpoints", () => {
 
     const app = createApp({ prismaClient });
     const response = await request(app)
-      .post("/addStory.php")
+      .post("/addStory")
       .field("user_id", "2")
       .field("story_type", "1")
       .field("story_date", "2026-06-05")

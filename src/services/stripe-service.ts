@@ -52,7 +52,7 @@ export class StripeService {
 
   public connectUrl(request: Request, user: LegacyUserRow): string {
     const basePath = requestBasePath(request);
-    return `${basePath}/stripe_connect.php?user_id=${String(user.user_id ?? "")}`;
+    return `${basePath}/stripe_connect?user_id=${String(user.user_id ?? "")}`;
   }
 
   public isConfigured(): boolean {
@@ -95,8 +95,8 @@ export class StripeService {
       const basePath = requestBasePath(request);
       const accountLink = await this.client.accountLinks.create({
         account: accountId,
-        refresh_url: `${basePath}/stripe_refresh.php?user_id=${userId}`,
-        return_url: `${basePath}/stripe_success.php?user_id=${userId}`,
+        refresh_url: `${basePath}/stripe_refresh?user_id=${userId}`,
+        return_url: `${basePath}/stripe_success?user_id=${userId}`,
         type: "account_onboarding"
       });
 

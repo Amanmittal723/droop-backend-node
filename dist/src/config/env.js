@@ -25,7 +25,6 @@ const envSchema = zod_1.z.object({
     LEGACY_THUMBNAILS_ROOT: zod_1.z.string().default("./runtime/thumbnails"),
     LEGACY_VIDEO_POSTS_ROOT: zod_1.z.string().default("./runtime/videoPosts"),
     LEGACY_PHP_ROOT: zod_1.z.string().default("./legacy-php"),
-    LEGACY_SQL_DUMP: zod_1.z.string().default("./artifacts/droop1988_appdb.sql"),
     SWAGGER_ENABLED: zod_1.z.string().default("true"),
     STRIPE_SECRET_KEY: zod_1.z.string().optional(),
     STRIPE_PUBLISHABLE_KEY: zod_1.z.string().optional(),

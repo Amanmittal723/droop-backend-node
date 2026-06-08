@@ -98,7 +98,7 @@ class ExternalController {
     stripeRefresh = async (request, response) => {
         const userId = (0, legacy_request_1.getLegacyOptionalString)(request, "user_id");
         if (userId) {
-            response.redirect(`/categories/stripe_connect.php?user_id=${userId}`);
+            response.redirect(`/categories/stripe_connect?user_id=${userId}`);
             return;
         }
         response.status(200).send("");

@@ -1,5 +1,5 @@
 /**
- * Purpose: Recreate the legacy health.php endpoint structure while checking the Node runtime and PostgreSQL dependencies.
+ * Purpose: Recreate the legacy health endpoint structure while checking the Node runtime and PostgreSQL dependencies.
  * Expected request body: None.
  * Expected query parameters: None.
  * Expected headers: Standard HTTP headers.

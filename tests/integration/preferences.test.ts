@@ -11,7 +11,7 @@ import { createApp } from "../../src/app";
 describe("preference compatibility endpoints", () => {
   it("returns the legacy missing-data response for category selection", async () => {
     const app = createApp({ prismaClient: {} as never });
-    const response = await request(app).post("/categories/selectUserCategory.php").send({});
+    const response = await request(app).post("/categories/selectUserCategory").send({});
     expect(response.status).toBe(200);
     expect(response.body).toEqual({
       status: "0",
@@ -27,7 +27,7 @@ describe("preference compatibility endpoints", () => {
     } as never;
 
     const app = createApp({ prismaClient });
-    const response = await request(app).post("/categories/selectUserBusiness.php").send({
+    const response = await request(app).post("/categories/selectUserBusiness").send({
       user_id: "1",
       business_ids: "2,3"
     });
