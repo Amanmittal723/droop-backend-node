@@ -42,7 +42,7 @@ describe("sqlite_users compatibility endpoint", () => {
                 status: "1",
                 database_path: databasePath,
                 requested_username: "jane",
-                returned_count: 1
+                returned_count: "1"
             });
             expect(response.body.users).toEqual([
                 expect.objectContaining({

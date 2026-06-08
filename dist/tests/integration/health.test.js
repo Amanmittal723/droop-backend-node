@@ -25,4 +25,18 @@ describe("GET /categories/health.php", () => {
         expect(response.body).toHaveProperty("timestamp");
         expect(response.body).toHaveProperty("checks");
     });
+    it("keeps the root and /categories aliases in sync for health.php", async () => {
+        const app = (0, app_1.createApp)({
+            prismaClient: {
+                $queryRaw: jest.fn().mockResolvedValue([{ server_version: "PostgreSQL test" }])
+            }
+        });
+        const [rootResponse, categoriesResponse] = await Promise.all([
+            (0, supertest_1.default)(app).get("/health.php"),
+            (0, supertest_1.default)(app).get("/categories/health.php")
+        ]);
+        expect(rootResponse.status).toBe(categoriesResponse.status);
+        expect(rootResponse.body.status).toBe(categoriesResponse.body.status);
+        expect(rootResponse.body.checks).toEqual(categoriesResponse.body.checks);
+    });
 });

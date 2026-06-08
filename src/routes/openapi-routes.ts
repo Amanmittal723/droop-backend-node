@@ -1,0 +1,1 @@
+export { createOpenApiRouter } from "./openapi";

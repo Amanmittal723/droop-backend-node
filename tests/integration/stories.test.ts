@@ -6,6 +6,8 @@
  * Expected response structure: Legacy JSON payloads with status and message values from the PHP scripts.
  */
 import request from "supertest";
+import fs from "node:fs/promises";
+import path from "node:path";
 import { createApp } from "../../src/app";
 
 describe("story compatibility endpoints", () => {
@@ -116,5 +118,49 @@ describe("story compatibility endpoints", () => {
     expect(response.status).toBe(200);
     expect(response.body.status).toBe("1");
     expect(response.body.message).toBe("Story Created Successfully");
+  });
+
+  it("writes uploaded story media into the test storage root instead of repo-tracked folders", async () => {
+    const prismaClient = {
+      $queryRaw: jest
+        .fn()
+        .mockResolvedValueOnce([
+          {
+            user_id: 2,
+            user_name: "demotwo"
+          }
+        ])
+        .mockResolvedValueOnce([
+          {
+            story_id: 9,
+            story_image: "http://localhost:3000/categories/storyPost/uploaded-story.jpg",
+            story_posted_by: 2,
+            story_video: "",
+            story_type: 1,
+            story_date: "2026-06-05",
+            story_time: "10:00:00",
+            date_time: "2026-06-05 10:00:00"
+          }
+        ])
+    } as never;
+
+    const storyDirectory = path.join(process.env.LEGACY_STORAGE_ROOT as string, "storyPost");
+    await fs.rm(storyDirectory, { recursive: true, force: true });
+
+    const app = createApp({ prismaClient });
+    const response = await request(app)
+      .post("/addStory.php")
+      .field("user_id", "2")
+      .field("story_type", "1")
+      .field("story_date", "2026-06-05")
+      .field("story_time", "10:00:00")
+      .attach("story_image", Buffer.from("hello"), "story.jpg");
+
+    expect(response.status).toBe(200);
+    expect(response.body.status).toBe("1");
+
+    const files = await fs.readdir(storyDirectory);
+    expect(files.length).toBeGreaterThan(0);
+    expect(storyDirectory.startsWith("/private/tmp/")).toBe(true);
   });
 });

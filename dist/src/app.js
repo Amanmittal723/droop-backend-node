@@ -18,8 +18,8 @@ const env_1 = require("./config/env");
 const prisma_1 = require("./db/prisma");
 const logger_1 = require("./lib/logger");
 const legacy_request_1 = require("./lib/legacy-request");
-const categories_1 = require("./routes/categories");
-const openapi_1 = require("./routes/openapi");
+const routes_1 = require("./routes");
+const openapi_routes_1 = require("./routes/openapi-routes");
 const storage_1 = require("./lib/storage");
 const mail_service_1 = require("./services/mail-service");
 const stripe_service_1 = require("./services/stripe-service");
@@ -47,10 +47,10 @@ function createApp(dependencies) {
     app.use("/categories/storyPost", express_1.default.static(`${env_1.env.legacyStorageRoot}/storyPost`));
     app.use("/categories/thumbnails", express_1.default.static(env_1.env.legacyThumbnailsRoot));
     app.use("/categories/videoPosts", express_1.default.static(env_1.env.legacyVideoPostsRoot));
-    app.use((0, categories_1.createCategoriesRouter)(resolvedDependencies));
-    app.use("/categories", (0, categories_1.createCategoriesRouter)(resolvedDependencies));
+    app.use((0, routes_1.createCompatibilityRouter)(resolvedDependencies));
+    app.use("/categories", (0, routes_1.createCompatibilityRouter)(resolvedDependencies));
     if (env_1.env.swaggerEnabled) {
-        app.use((0, openapi_1.createOpenApiRouter)());
+        app.use((0, openapi_routes_1.createOpenApiRouter)());
     }
     app.use((error, _request, response, _next) => {
         logger_1.logger.error({ err: error }, "Unhandled application error");

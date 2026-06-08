@@ -13,8 +13,8 @@ import { env } from "./config/env";
 import { prisma } from "./db/prisma";
 import { logger } from "./lib/logger";
 import { legacyRequestMiddleware } from "./lib/legacy-request";
-import { createCategoriesRouter } from "./routes/categories";
-import { createOpenApiRouter } from "./routes/openapi";
+import { createCompatibilityRouter } from "./routes";
+import { createOpenApiRouter } from "./routes/openapi-routes";
 import { ensureRuntimeDirectories } from "./lib/storage";
 import { MailService } from "./services/mail-service";
 import { StripeService } from "./services/stripe-service";
@@ -53,8 +53,8 @@ export function createApp(dependencies?: Partial<AppDependencies>) {
   app.use("/categories/thumbnails", express.static(env.legacyThumbnailsRoot));
   app.use("/categories/videoPosts", express.static(env.legacyVideoPostsRoot));
 
-  app.use(createCategoriesRouter(resolvedDependencies));
-  app.use("/categories", createCategoriesRouter(resolvedDependencies));
+  app.use(createCompatibilityRouter(resolvedDependencies));
+  app.use("/categories", createCompatibilityRouter(resolvedDependencies));
 
   if (env.swaggerEnabled) {
     app.use(createOpenApiRouter());

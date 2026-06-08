@@ -11,6 +11,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * Expected response structure: Legacy JSON payloads with status and message values from the PHP scripts.
  */
 const supertest_1 = __importDefault(require("supertest"));
+const promises_1 = __importDefault(require("node:fs/promises"));
+const node_path_1 = __importDefault(require("node:path"));
 const app_1 = require("../../src/app");
 describe("story compatibility endpoints", () => {
     it("returns the legacy invalid-request response for deleteStory.php", async () => {
@@ -111,5 +113,44 @@ describe("story compatibility endpoints", () => {
         expect(response.status).toBe(200);
         expect(response.body.status).toBe("1");
         expect(response.body.message).toBe("Story Created Successfully");
+    });
+    it("writes uploaded story media into the test storage root instead of repo-tracked folders", async () => {
+        const prismaClient = {
+            $queryRaw: jest
+                .fn()
+                .mockResolvedValueOnce([
+                {
+                    user_id: 2,
+                    user_name: "demotwo"
+                }
+            ])
+                .mockResolvedValueOnce([
+                {
+                    story_id: 9,
+                    story_image: "http://localhost:3000/categories/storyPost/uploaded-story.jpg",
+                    story_posted_by: 2,
+                    story_video: "",
+                    story_type: 1,
+                    story_date: "2026-06-05",
+                    story_time: "10:00:00",
+                    date_time: "2026-06-05 10:00:00"
+                }
+            ])
+        };
+        const storyDirectory = node_path_1.default.join(process.env.LEGACY_STORAGE_ROOT, "storyPost");
+        await promises_1.default.rm(storyDirectory, { recursive: true, force: true });
+        const app = (0, app_1.createApp)({ prismaClient });
+        const response = await (0, supertest_1.default)(app)
+            .post("/addStory.php")
+            .field("user_id", "2")
+            .field("story_type", "1")
+            .field("story_date", "2026-06-05")
+            .field("story_time", "10:00:00")
+            .attach("story_image", Buffer.from("hello"), "story.jpg");
+        expect(response.status).toBe(200);
+        expect(response.body.status).toBe("1");
+        const files = await promises_1.default.readdir(storyDirectory);
+        expect(files.length).toBeGreaterThan(0);
+        expect(storyDirectory.startsWith("/private/tmp/")).toBe(true);
     });
 });
