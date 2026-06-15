@@ -6,6 +6,7 @@
  * Expected response structure: Raw database rows and scalar counts matching PHP queries.
  */
 import { PrismaClient } from "@prisma/client";
+import { normalizeLegacyEmail } from "../validators/auth-validator";
 
 export class UserRepository {
   public constructor(private readonly prismaClient: PrismaClient) {}
@@ -29,6 +30,15 @@ export class UserRepository {
       SELECT * FROM user_master WHERE user_email = ${value} OR user_name = ${value}
     `;
     return rows[0] ?? null;
+  }
+
+  public async findByLoginEmail(email: string): Promise<Record<string, unknown> | null> {
+    const normalizedEmail = normalizeLegacyEmail(email);
+    if (normalizedEmail.length <= 0) {
+      return null;
+    }
+
+    return this.findByEmail(normalizedEmail);
   }
 
   public async findByUserId(userId: number | string): Promise<Record<string, unknown> | null> {
@@ -58,6 +68,7 @@ export class UserRepository {
         (
           user_full_name,
           user_email,
+          user_mobile,
           user_pass,
           user_name,
           user_pic,
@@ -81,6 +92,7 @@ export class UserRepository {
         (
           ${input.name},
           ${input.email},
+          ${null},
           ${input.password ?? ""},
           ${input.username},
           ${input.picturePath},

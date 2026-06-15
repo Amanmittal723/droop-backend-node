@@ -39,6 +39,30 @@ const document = {
         }
       }
     },
+    "/check_email": {
+      post: {
+        summary: "Check whether an email address is available for signup",
+        responses: {
+          "200": { description: "Legacy email availability response" }
+        }
+      }
+    },
+    "/check_username": {
+      post: {
+        summary: "Check whether a username is available for signup",
+        responses: {
+          "200": { description: "Legacy username availability response" }
+        }
+      }
+    },
+    "/signup_email": {
+      post: {
+        summary: "Create an account with email address, username, and password",
+        responses: {
+          "200": { description: "Legacy email signup response" }
+        }
+      }
+    },
     "/categories/health": {
       get: {
         summary: "Compatibility health check",

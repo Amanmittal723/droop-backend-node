@@ -9,6 +9,14 @@ export function trimLegacyUsername(username: string): string {
   return username.trim();
 }
 
+export function normalizeLegacyEmail(email: string): string {
+  return email.trim().toLowerCase();
+}
+
+export function isValidLegacyEmail(email: string): boolean {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
 export function shouldUpdateDeviceToken(deviceToken: string): boolean {
   return deviceToken.length > 15;
 }

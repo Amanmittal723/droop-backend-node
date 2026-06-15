@@ -17,7 +17,12 @@ import { UserRepository } from "../repositories/user-repository";
 import { ProfileComposerService } from "../services/profile-composer";
 import { MailService } from "../services/mail-service";
 import { StripeService } from "../services/stripe-service";
-import { shouldUpdateDeviceToken, trimLegacyUsername } from "../validators/auth-validator";
+import {
+  isValidLegacyEmail,
+  normalizeLegacyEmail,
+  shouldUpdateDeviceToken,
+  trimLegacyUsername
+} from "../validators/auth-validator";
 
 type AuthControllerDependencies = {
   prismaClient: PrismaClient;
@@ -44,6 +49,116 @@ export class AuthController {
     );
     this.mailService = dependencies.mailService;
   }
+
+  public checkEmail = async (request: Request, response: Response): Promise<void> => {
+    const email = normalizeLegacyEmail(getLegacyString(request, "email"));
+
+    if (email.length <= 0) {
+      sendLegacyJson(response, { status: "2", message: "Email address is required." });
+      return;
+    }
+
+    if (!isValidLegacyEmail(email)) {
+      sendLegacyJson(response, { status: "2", message: "Please enter a valid email address." });
+      return;
+    }
+
+    const existingByEmail = await this.userRepository.findByEmail(email);
+    if (existingByEmail) {
+      sendLegacyJson(response, { status: "2", message: "This Email Address is already registered with us." });
+      return;
+    }
+
+    sendLegacyJson(response, { status: "1", message: "Email address is available." });
+  };
+
+  public checkUsername = async (request: Request, response: Response): Promise<void> => {
+    const username = trimLegacyUsername(getLegacyString(request, "username"));
+
+    if (username.length <= 0) {
+      sendLegacyJson(response, { status: "2", message: "Username is required." });
+      return;
+    }
+
+    const existingByUsername = await this.userRepository.findByUsername(username);
+    if (existingByUsername) {
+      sendLegacyJson(response, { status: "3", message: "This username is already taken." });
+      return;
+    }
+
+    sendLegacyJson(response, { status: "1", message: "Username is available." });
+  };
+
+  public signupEmail = async (request: Request, response: Response): Promise<void> => {
+    const email = normalizeLegacyEmail(getLegacyString(request, "email"));
+    const username = trimLegacyUsername(getLegacyString(request, "username"));
+    const password = getLegacyString(request, "pass") || getLegacyString(request, "password");
+    const deviceToken = getLegacyString(request, "device_token");
+    const deviceType = getLegacyString(request, "device_type", "iOS");
+    const userType = getLegacyString(request, "user_type", "1");
+
+    if (email.length <= 0) {
+      sendLegacyJson(response, { status: "2", message: "Email address is required." });
+      return;
+    }
+
+    if (!isValidLegacyEmail(email)) {
+      sendLegacyJson(response, { status: "2", message: "Please enter a valid email address." });
+      return;
+    }
+
+    if (username.length <= 0) {
+      sendLegacyJson(response, { status: "2", message: "Username is required." });
+      return;
+    }
+
+    if (password.length < 8) {
+      sendLegacyJson(response, { status: "2", message: "Password must be at least 8 characters." });
+      return;
+    }
+
+    const existingByEmail = await this.userRepository.findByEmail(email);
+    if (existingByEmail) {
+      sendLegacyJson(response, { status: "2", message: "This Email Address is already registered with us." });
+      return;
+    }
+
+    const existingByUsername = await this.userRepository.findByUsername(username);
+    if (existingByUsername) {
+      sendLegacyJson(response, { status: "3", message: "This username is already taken." });
+      return;
+    }
+
+    const userId = await this.userRepository.createUser({
+      name: username,
+      email,
+      password,
+      username,
+      picturePath: "",
+      deviceToken,
+      deviceType,
+      userType
+    });
+
+    let createdUser = await this.userRepository.findByUserId(userId);
+    if (!createdUser) {
+      sendLegacyJson(response, { status: "0", message: "Error while adding record in database" });
+      return;
+    }
+
+    const stripeCustomer = await this.dependencies.stripeService.createCustomer(createdUser);
+    if (stripeCustomer.status === "1" && stripeCustomer.data.stripe_customer_id) {
+      await this.userRepository.updateStripeCustomerId(userId, String(stripeCustomer.data.stripe_customer_id));
+      createdUser = { ...createdUser, stripe_customer_id: stripeCustomer.data.stripe_customer_id };
+    }
+
+    const payload = await this.profileComposer.composeSignupUser(request, createdUser);
+    sendLegacyJson(response, {
+      status: "1",
+      message: "User Signup Successfully",
+      data: payload
+    });
+  };
 
   public signup = async (request: Request, response: Response): Promise<void> => {
     const name = getLegacyString(request, "name");
@@ -123,9 +238,27 @@ export class AuthController {
       return;
     }
 
-    const username = getLegacyString(request, "username");
+    const email = normalizeLegacyEmail(
+      getLegacyString(request, "email") || getLegacyString(request, "username")
+    );
     const password = getLegacyString(request, "password");
-    const existingUser = await this.userRepository.findByUsername(username);
+
+    if (email.length <= 0) {
+      sendLegacyJson(response, { status: "0", message: "Email address is required." });
+      return;
+    }
+
+    if (!isValidLegacyEmail(email)) {
+      sendLegacyJson(response, { status: "0", message: "Please enter a valid email address." });
+      return;
+    }
+
+    if (password.length <= 0) {
+      sendLegacyJson(response, { status: "0", message: "Password is required." });
+      return;
+    }
+
+    const existingUser = await this.userRepository.findByLoginEmail(email);
 
     if (!existingUser) {
       sendLegacyJson(response, { status: "0", message: "User not found" });
@@ -133,7 +266,10 @@ export class AuthController {
     }
 
     if (String(existingUser.user_pass ?? "") !== password) {
-      sendLegacyJson(response, { status: "0", message: "Invalid username or password" });
+      sendLegacyJson(response, {
+        status: "0",
+        message: "Invalid email or password"
+      });
       return;
     }
 
@@ -160,13 +296,13 @@ export class AuthController {
   };
 
   public forgotPassword = async (request: Request, response: Response): Promise<void> => {
-    const email = getLegacyOptionalString(request, "email");
-    if (!email) {
+    const email = normalizeLegacyEmail(getLegacyOptionalString(request, "email") ?? "");
+    if (email.length <= 0) {
       sendLegacyJson(response, { status: "0", message: "Email required" });
       return;
     }
 
-    const user = (await this.userRepository.findByEmailOrUsername(email)) ?? null;
+    const user = (await this.userRepository.findByEmail(email)) ?? null;
     if (!user) {
       sendLegacyJson(response, { status: "0", message: "Email is not registered with droop" });
       return;

@@ -4,6 +4,9 @@ import { ControllerBundle } from "../controllers/create-controller-bundle";
 
 export function registerAuthRoutes(router: Router, controllers: ControllerBundle): void {
   router.get("/health", asyncHandler(controllers.health.index));
+  router.post("/check_email", asyncHandler(controllers.auth.checkEmail));
+  router.post("/check_username", asyncHandler(controllers.auth.checkUsername));
+  router.post("/signup_email", asyncHandler(controllers.auth.signupEmail));
   router.post("/signup", asyncHandler(controllers.auth.signup));
   router.post("/signup2", asyncHandler(controllers.auth.signup));
   router.post("/login", asyncHandler(controllers.auth.login));
