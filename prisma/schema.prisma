@@ -259,6 +259,16 @@ model StoryMaster {
   @@map("story_master")
 }
 
+model StoryView {
+  story_id  Int
+  user_id   Int
+  viewed_at DateTime @default(now()) @db.Timestamp(6)
+
+  @@id([story_id, user_id])
+  @@index([user_id])
+  @@map("story_view")
+}
+
 model UserBusiness {
   user_id     Int
   business_id Int

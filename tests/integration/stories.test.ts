@@ -46,6 +46,7 @@ describe("story compatibility endpoints", () => {
           story_posted_by: 2,
           story_type: 1,
           is_reported: 0,
+          is_viewed: 0,
           user_pic: "/storage/profile/demo2.jpg",
           user_name: "demotwo",
           date_time: new Date("2026-06-05T10:00:00Z")
@@ -65,12 +66,14 @@ describe("story compatibility endpoints", () => {
           story_posted_by: "2",
           user_pic: "/storage/profile/demo2.jpg",
           user_name: "demotwo",
+          has_unseen_stories: "1",
           stories: [
             {
               story_id: "7",
               story_posted_by: "2",
               story_type: "1",
               is_reported: "0",
+              is_viewed: "0",
               user_pic: "/storage/profile/demo2.jpg",
               user_name: "demotwo",
               date_time: "2026-06-05 10:00:00"
@@ -162,5 +165,25 @@ describe("story compatibility endpoints", () => {
     const files = await fs.readdir(storyDirectory);
     expect(files.length).toBeGreaterThan(0);
     expect(storyDirectory.startsWith("/private/tmp/")).toBe(true);
+  });
+
+  it("records a story view and returns the legacy success payload", async () => {
+    const prismaClient = {
+      $queryRaw: jest
+        .fn()
+        .mockResolvedValueOnce([{ story_id: 7, story_posted_by: 2 }])
+        .mockResolvedValueOnce([]),
+      $executeRaw: jest.fn().mockResolvedValue(1),
+      $transaction: jest.fn((operations: Promise<unknown>[]) => Promise.all(operations))
+    } as never;
+
+    const app = createApp({ prismaClient });
+    const response = await request(app).post("/viewStory").send({ user_id: "1", story_id: "7" });
+
+    expect(response.status).toBe(200);
+    expect(response.body).toEqual({
+      status: "1",
+      message: "Story viewed successfully"
+    });
   });
 });

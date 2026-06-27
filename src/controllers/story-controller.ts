@@ -139,7 +139,33 @@ export class StoryController {
       (data[owner].stories as Record<string, unknown>[]).push(normalizedRow);
     }
 
-    sendLegacyJson(response, { status: "1", message: "Story Found successfully", data: Object.values(data) });
+    const groupedStories = Object.values(data).map((group) => {
+      const stories = (group.stories as Record<string, unknown>[]) ?? [];
+      const ownerId = String(group.story_posted_by ?? "");
+      const hasUnseenStories =
+        ownerId === userId
+          ? stories.length > 0
+          : stories.some((story) => String(story.is_viewed ?? "0") !== "1");
+
+      return {
+        ...group,
+        has_unseen_stories: hasUnseenStories ? "1" : "0"
+      };
+    });
+
+    sendLegacyJson(response, { status: "1", message: "Story Found successfully", data: groupedStories });
+  };
+
+  public viewStory = async (request: Request, response: Response): Promise<void> => {
+    const userId = getLegacyString(request, "user_id");
+    const storyId = getLegacyString(request, "story_id");
+    const recorded = await this.storyRepository.recordStoryView(storyId, userId);
+    if (!recorded) {
+      sendLegacyJson(response, { status: "0", message: "Story not found" });
+      return;
+    }
+
+    sendLegacyJson(response, { status: "1", message: "Story viewed successfully" });
   };
 
   private getUploadedFile(request: Request, fieldName: string): Express.Multer.File | undefined {
