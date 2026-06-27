@@ -1,6 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.trimLegacyUsername = trimLegacyUsername;
+exports.normalizeLegacyEmail = normalizeLegacyEmail;
+exports.isValidLegacyEmail = isValidLegacyEmail;
 exports.shouldUpdateDeviceToken = shouldUpdateDeviceToken;
 /**
  * Purpose: Apply only the legacy validations present in the PHP login and signup flows.
@@ -11,6 +13,12 @@ exports.shouldUpdateDeviceToken = shouldUpdateDeviceToken;
  */
 function trimLegacyUsername(username) {
     return username.trim();
+}
+function normalizeLegacyEmail(email) {
+    return email.trim().toLowerCase();
+}
+function isValidLegacyEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 function shouldUpdateDeviceToken(deviceToken) {
     return deviceToken.length > 15;

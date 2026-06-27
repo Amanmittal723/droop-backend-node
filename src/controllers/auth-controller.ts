@@ -296,13 +296,18 @@ export class AuthController {
   };
 
   public forgotPassword = async (request: Request, response: Response): Promise<void> => {
-    const email = normalizeLegacyEmail(getLegacyOptionalString(request, "email") ?? "");
-    if (email.length <= 0) {
+    const identifier = getLegacyOptionalString(request, "email") ?? "";
+    if (identifier.trim().length <= 0) {
       sendLegacyJson(response, { status: "0", message: "Email required" });
       return;
     }
 
-    const user = (await this.userRepository.findByEmail(email)) ?? null;
+    if (identifier.includes("@") && !isValidLegacyEmail(identifier.trim())) {
+      sendLegacyJson(response, { status: "0", message: "Please enter a valid email address." });
+      return;
+    }
+
+    const user = (await this.userRepository.findForAccountRecovery(identifier)) ?? null;
     if (!user) {
       sendLegacyJson(response, { status: "0", message: "Email is not registered with droop" });
       return;

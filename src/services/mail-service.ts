@@ -8,12 +8,17 @@
 import net from "node:net";
 import tls from "node:tls";
 import { env } from "../config/env";
+import { logger } from "../lib/logger";
 
 export class MailService {
   public async sendRecoveryMail(to: string, name: string, subject: string, html: string): Promise<boolean> {
     if (!env.SMTP_HOST || !env.SMTP_USERNAME || !env.SMTP_PASSWORD) {
+      logger.warn("Recovery email skipped because SMTP_HOST, SMTP_USERNAME, or SMTP_PASSWORD is not configured");
       return false;
     }
+
+    const smtpUsername = env.SMTP_USERNAME;
+    const smtpPassword = env.SMTP_PASSWORD;
 
     const socket = env.smtpSecure
       ? tls.connect({
@@ -37,36 +42,80 @@ export class MailService {
       const responses = createSmtpResponseReader(socket);
       const initial = await responses.next();
       if (initial.code !== 220) {
+        logger.error({ smtpResponse: initial.message }, "SMTP server rejected the initial connection");
         return false;
       }
 
       await sendSmtpCommand(socket, responses, `EHLO ${env.SMTP_HOST}`, [250]);
-      await sendSmtpCommand(socket, responses, "AUTH LOGIN", [334]);
-      await sendSmtpCommand(socket, responses, Buffer.from(env.SMTP_USERNAME).toString("base64"), [334]);
-      await sendSmtpCommand(socket, responses, Buffer.from(env.SMTP_PASSWORD).toString("base64"), [235]);
-      await sendSmtpCommand(socket, responses, `MAIL FROM:<${env.smtpFromAddress}>`, [250]);
-      await sendSmtpCommand(socket, responses, `RCPT TO:<${to}>`, [250, 251]);
-      await sendSmtpCommand(socket, responses, "DATA", [354]);
 
-      const encodedSubject = `=?UTF-8?B?${Buffer.from(subject, "utf8").toString("base64")}?=`;
-      const body = [
-        `From: ${formatEmailAddress(env.smtpFromName, env.smtpFromAddress)}`,
-        `To: ${formatEmailAddress(name, to)}`,
-        `Subject: ${encodedSubject}`,
-        "MIME-Version: 1.0",
-        "Content-Type: text/html; charset=utf-8",
-        "",
-        html.replace(/^\./gm, "..")
-      ].join("\r\n");
+      if (!env.smtpSecure) {
+        await sendSmtpCommand(socket, responses, "STARTTLS", [220]);
+        const upgradedSocket = await upgradeSocketWithStartTls(socket, env.SMTP_HOST);
+        const upgradedResponses = createSmtpResponseReader(upgradedSocket);
+        await sendSmtpCommand(upgradedSocket, upgradedResponses, `EHLO ${env.SMTP_HOST}`, [250]);
+        return await this.sendRecoveryMailOverSocket(
+          upgradedSocket,
+          upgradedResponses,
+          to,
+          name,
+          subject,
+          html,
+          smtpUsername,
+          smtpPassword
+        );
+      }
 
-      await sendSmtpCommand(socket, responses, `${body}\r\n.`, [250]);
-      await sendSmtpCommand(socket, responses, "QUIT", [221]);
-      return true;
-    } catch {
+      return await this.sendRecoveryMailOverSocket(
+        socket,
+        responses,
+        to,
+        name,
+        subject,
+        html,
+        smtpUsername,
+        smtpPassword
+      );
+    } catch (error) {
+      logger.error({ err: error }, "Failed to send recovery email");
       return false;
     } finally {
-      socket.end();
+      if (!socket.destroyed) {
+        socket.end();
+      }
     }
+  }
+
+  private async sendRecoveryMailOverSocket(
+    socket: net.Socket | tls.TLSSocket,
+    responses: { next: () => Promise<{ code: number; message: string }> },
+    to: string,
+    name: string,
+    subject: string,
+    html: string,
+    smtpUsername: string,
+    smtpPassword: string
+  ): Promise<boolean> {
+    await sendSmtpCommand(socket, responses, "AUTH LOGIN", [334]);
+    await sendSmtpCommand(socket, responses, Buffer.from(smtpUsername).toString("base64"), [334]);
+    await sendSmtpCommand(socket, responses, Buffer.from(smtpPassword).toString("base64"), [235]);
+    await sendSmtpCommand(socket, responses, `MAIL FROM:<${env.smtpFromAddress}>`, [250]);
+    await sendSmtpCommand(socket, responses, `RCPT TO:<${to}>`, [250, 251]);
+    await sendSmtpCommand(socket, responses, "DATA", [354]);
+
+    const encodedSubject = `=?UTF-8?B?${Buffer.from(subject, "utf8").toString("base64")}?=`;
+    const body = [
+      `From: ${formatEmailAddress(env.smtpFromName, env.smtpFromAddress)}`,
+      `To: ${formatEmailAddress(name, to)}`,
+      `Subject: ${encodedSubject}`,
+      "MIME-Version: 1.0",
+      "Content-Type: text/html; charset=utf-8",
+      "",
+      html.replace(/^\./gm, "..")
+    ].join("\r\n");
+
+    await sendSmtpCommand(socket, responses, `${body}\r\n.`, [250]);
+    await sendSmtpCommand(socket, responses, "QUIT", [221]);
+    return true;
   }
 }
 
@@ -122,6 +171,18 @@ function createSmtpResponseReader(socket: net.Socket | tls.TLSSocket): { next: (
         waiters.push(resolve);
       })
   };
+}
+
+async function upgradeSocketWithStartTls(socket: net.Socket, host: string): Promise<tls.TLSSocket> {
+  return new Promise<tls.TLSSocket>((resolve, reject) => {
+    const secureSocket = tls.connect({
+      socket,
+      servername: host
+    });
+
+    secureSocket.once("secureConnect", () => resolve(secureSocket));
+    secureSocket.once("error", reject);
+  });
 }
 
 async function sendSmtpCommand(

@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserRepository = void 0;
+const auth_validator_1 = require("../validators/auth-validator");
 class UserRepository {
     prismaClient;
     constructor(prismaClient) {
@@ -24,6 +25,23 @@ class UserRepository {
     `;
         return rows[0] ?? null;
     }
+    async findByLoginEmail(email) {
+        const normalizedEmail = (0, auth_validator_1.normalizeLegacyEmail)(email);
+        if (normalizedEmail.length <= 0) {
+            return null;
+        }
+        return this.findByEmail(normalizedEmail);
+    }
+    async findForAccountRecovery(identifier) {
+        const trimmed = identifier.trim();
+        if (trimmed.length <= 0) {
+            return null;
+        }
+        if ((0, auth_validator_1.isValidLegacyEmail)(trimmed)) {
+            return this.findByEmail((0, auth_validator_1.normalizeLegacyEmail)(trimmed));
+        }
+        return this.findByUsername((0, auth_validator_1.trimLegacyUsername)(trimmed));
+    }
     async findByUserId(userId) {
         const rows = await this.prismaClient.$queryRaw `
       SELECT * FROM user_master WHERE user_id = ${Number(userId)}
@@ -39,6 +57,7 @@ class UserRepository {
         (
           user_full_name,
           user_email,
+          user_mobile,
           user_pass,
           user_name,
           user_pic,
@@ -62,6 +81,7 @@ class UserRepository {
         (
           ${input.name},
           ${input.email},
+          ${null},
           ${input.password ?? ""},
           ${input.username},
           ${input.picturePath},

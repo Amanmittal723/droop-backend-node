@@ -44,6 +44,38 @@ const document = {
                 }
             }
         },
+        "/check_email": {
+            post: {
+                summary: "Check whether an email address is available for signup",
+                responses: {
+                    "200": { description: "Legacy email availability response" }
+                }
+            }
+        },
+        "/check_username": {
+            post: {
+                summary: "Check whether a username is available for signup",
+                responses: {
+                    "200": { description: "Legacy username availability response" }
+                }
+            }
+        },
+        "/signup_email": {
+            post: {
+                summary: "Create an account with email address, username, and password",
+                responses: {
+                    "200": { description: "Legacy email signup response" }
+                }
+            }
+        },
+        "/forgot_pass": {
+            post: {
+                summary: "Send account recovery email for a username or registered email address",
+                responses: {
+                    "200": { description: "Legacy password recovery response" }
+                }
+            }
+        },
         "/categories/health": {
             get: {
                 summary: "Compatibility health check",
@@ -65,6 +97,14 @@ const document = {
                 summary: "Legacy signup endpoint",
                 responses: {
                     "200": { description: "Legacy signup response" }
+                }
+            }
+        },
+        "/categories/forgot_pass": {
+            post: {
+                summary: "Send account recovery email for a username or registered email address",
+                responses: {
+                    "200": { description: "Legacy password recovery response" }
                 }
             }
         }

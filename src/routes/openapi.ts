@@ -63,6 +63,14 @@ const document = {
         }
       }
     },
+    "/forgot_pass": {
+      post: {
+        summary: "Send account recovery email for a username or registered email address",
+        responses: {
+          "200": { description: "Legacy password recovery response" }
+        }
+      }
+    },
     "/categories/health": {
       get: {
         summary: "Compatibility health check",
@@ -84,6 +92,14 @@ const document = {
         summary: "Legacy signup endpoint",
         responses: {
           "200": { description: "Legacy signup response" }
+        }
+      }
+    },
+    "/categories/forgot_pass": {
+      post: {
+        summary: "Send account recovery email for a username or registered email address",
+        responses: {
+          "200": { description: "Legacy password recovery response" }
         }
       }
     }
