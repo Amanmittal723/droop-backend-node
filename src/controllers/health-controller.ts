@@ -1,11 +1,12 @@
 /**
- * Purpose: Recreate the legacy health endpoint structure while checking the Node runtime and PostgreSQL dependencies.
+ * Purpose: Report Node runtime and PostgreSQL health for the migrated backend.
  * Expected request body: None.
  * Expected query parameters: None.
  * Expected headers: Standard HTTP headers.
- * Expected response structure: JSON object with status, timestamp, and checks keys matching the legacy PHP shape.
+ * Expected response structure: JSON object with status, timestamp, and checks for app, database, storage, and dependencies.
  */
 import fs from "node:fs";
+import path from "node:path";
 import { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
 import { env } from "../config/env";
@@ -17,6 +18,27 @@ type HealthControllerDependencies = {
 
 type CheckStatus = "ok" | "warn" | "fail";
 
+function readPackageInfo(): { name: string; version: string } {
+  try {
+    const raw = fs.readFileSync(path.join(process.cwd(), "package.json"), "utf8");
+    const parsed = JSON.parse(raw) as { name?: string; version?: string };
+    return {
+      name: parsed.name ?? "droop-backend-node",
+      version: parsed.version ?? "unknown"
+    };
+  } catch {
+    return { name: "droop-backend-node", version: "unknown" };
+  }
+}
+
+function databaseHost(databaseUrl: string): string {
+  try {
+    return new URL(databaseUrl).host || "postgresql";
+  } catch {
+    return "postgresql";
+  }
+}
+
 export class HealthController {
   public constructor(private readonly dependencies: HealthControllerDependencies) {}
 
@@ -25,10 +47,14 @@ export class HealthController {
     let overallStatus = "ok";
     let httpCode = 200;
 
+    const packageInfo = readPackageInfo();
     checks.app = {
       status: "ok",
-      message: "PHP backend is reachable",
-      php_version: process.version
+      message: "Node backend is reachable",
+      runtime: "node",
+      node_version: process.version,
+      name: packageInfo.name,
+      version: packageInfo.version
     };
 
     try {
@@ -37,8 +63,8 @@ export class HealthController {
       `;
       checks.database = {
         status: "ok",
-        host: "postgresql",
-        database: env.DATABASE_URL,
+        engine: "postgresql",
+        host: databaseHost(env.DATABASE_URL),
         server_info: result[0]?.server_version ?? "unknown"
       };
     } catch (error) {
@@ -46,8 +72,8 @@ export class HealthController {
       httpCode = 503;
       checks.database = {
         status: "fail",
-        hosts_tried: ["postgresql"],
-        database: env.DATABASE_URL,
+        engine: "postgresql",
+        host: databaseHost(env.DATABASE_URL),
         message: error instanceof Error ? error.message : "Database connection failed"
       };
     }
@@ -95,9 +121,11 @@ export class HealthController {
       paths: storageResults
     };
 
+    const nodeModulesPresent = fs.existsSync("node_modules");
     checks.dependencies = {
-      status: fs.existsSync("node_modules") ? "ok" : "warn",
-      composer_autoload: fs.existsSync("node_modules"),
+      status: nodeModulesPresent ? "ok" : "warn",
+      node_modules: nodeModulesPresent,
+      prisma_client: fs.existsSync("node_modules/@prisma/client"),
       stripe_sdk: fs.existsSync("node_modules/stripe")
     };
 

@@ -194,4 +194,82 @@ export class LegacyFeedRepository extends LegacyBaseRepository {
     );
     return Number(row?.loved_cnt ?? 0);
   }
+
+  public async homeDualFeedRows(
+    userId: string,
+    options: {
+      start?: string;
+      pageSize?: string;
+      random?: string;
+      seed?: string;
+      type?: string;
+      screen?: string;
+    }
+  ): Promise<{ rows: LegacyRow[]; total: number; seed: string }> {
+    const followingRows = await this.queryRows<{ following_id: string }>(
+      `SELECT following_id FROM followers_master WHERE followed_by='${escapeSql(userId)}'`
+    );
+    const followingIds = followingRows.map((row) => String(row.following_id).trim()).filter((entry) => entry.length > 0);
+    const followingCsv = followingIds.map((id) => `'${escapeSql(id)}'`).join(",");
+
+    const blockedByRows = await this.queryRows<{ user_id: string }>(
+      `SELECT user_id FROM blocks_master WHERE block_id='${escapeSql(userId)}'`
+    );
+    const blockedRows = await this.queryRows<{ block_id: string }>(
+      `SELECT block_id FROM blocks_master WHERE user_id='${escapeSql(userId)}'`
+    );
+    const blockedIds = [...blockedByRows.map((row) => String(row.user_id).trim()), ...blockedRows.map((row) => String(row.block_id).trim())]
+      .filter((entry) => entry.length > 0);
+    const blockedCsv = blockedIds.map((id) => `'${escapeSql(id)}'`).join(",");
+
+    const ownOrLinked = `(dp.dual_posted_by='${escapeSql(userId)}' OR dp.dual_linked_to=${Number(userId)})`;
+    let followingContent = "0=1";
+    if (followingCsv.length > 0) {
+      followingContent = `(
+        ((dp.dual_linked_to<=0 OR dp.dual_linked_to=-1) AND dp.dual_posted_by IN (${followingCsv}))
+        OR
+        (dp.dual_linked_to>0 AND dp.dual_posted_by IN (${followingCsv}) AND CAST(dp.dual_linked_to AS TEXT) IN (${followingCsv}))
+      )`;
+    }
+
+    const whereParts = [
+      "dp.dual_caption!='Not Provided'",
+      "dp.is_reported='NO'",
+      `(${ownOrLinked} OR ${followingContent})`
+    ];
+
+    if (blockedCsv.length > 0) {
+      whereParts.push(`dp.dual_posted_by NOT IN (${blockedCsv})`);
+      whereParts.push(`dp.dual_linked_to NOT IN (${blockedCsv})`);
+    }
+
+    const random = String(options.random ?? "") === "1";
+    const seed = options.seed ?? String(Date.now());
+    if (random) {
+      whereParts.push("date(dp.date_time) > CURRENT_DATE - INTERVAL '7 days'");
+    }
+
+    const type = (options.type ?? "").toLowerCase();
+    const screen = (options.screen ?? "").toLowerCase();
+    let sql =
+      "SELECT dp.*, CASE WHEN lm.loved_by IS NULL THEN FALSE ELSE TRUE END as is_loved, CASE WHEN sm.saved_by IS NULL THEN FALSE ELSE TRUE END as is_saved" +
+      " FROM dualpost_master dp" +
+      ` LEFT JOIN save_master sm on dp.dual_id=sm.dual_id and sm.saved_by=${Number(userId)}` +
+      ` LEFT JOIN love_master lm on dp.dual_id=lm.dual_id and lm.loved_by=${Number(userId)}` +
+      ` WHERE ${whereParts.join(" AND ")}` +
+      ` ORDER BY ${random ? "RANDOM()" : "dp.date_time DESC"}`;
+
+    if (options.start !== undefined && options.pageSize !== undefined) {
+      sql += ` LIMIT ${options.pageSize} OFFSET ${options.start}`;
+    } else if (type === "post" && screen === "home") {
+      sql += " LIMIT 4";
+    }
+
+    const rows = await this.queryRows<LegacyRow>(sql);
+    const totalRow = await this.queryRow<{ total: number | bigint }>(
+      `SELECT count(dp.dual_id) as total FROM dualpost_master dp WHERE ${whereParts.join(" AND ")}`
+    );
+
+    return { rows, total: Number(totalRow?.total ?? 0), seed };
+  }
 }

@@ -17,9 +17,9 @@ const document = {
   paths: {
     "/health": {
       get: {
-        summary: "Compatibility health check",
+        summary: "Node and PostgreSQL health check",
         responses: {
-          "200": { description: "Legacy health response" }
+          "200": { description: "Health response with app, database, storage, and dependency checks" }
         }
       }
     },
@@ -73,9 +73,9 @@ const document = {
     },
     "/categories/health": {
       get: {
-        summary: "Compatibility health check",
+        summary: "Node and PostgreSQL health check",
         responses: {
-          "200": { description: "Legacy health response" }
+          "200": { description: "Health response with app, database, storage, and dependency checks" }
         }
       }
     },

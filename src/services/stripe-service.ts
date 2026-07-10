@@ -191,7 +191,7 @@ export class StripeService {
 
 function requestBasePath(request: Request): string {
   const scheme = request.secure ? "https" : "http";
-  const host = request.headers.host ?? "localhost:3000";
+  const host = request.headers.host ?? "localhost:2000";
   const requestPath = request.originalUrl.split("?")[0];
   const requestDirectory = path.posix.dirname(requestPath);
   const legacyDirectory = requestDirectory.startsWith("/categories") ? requestDirectory : "/categories";

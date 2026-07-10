@@ -268,7 +268,7 @@ export class MessagingController {
 
   private publicUrl(request: Request, directory: string, fileName: string): string {
     const protocol = request.secure ? "https" : "http";
-    const host = request.headers.host ?? "localhost:3000";
+    const host = request.headers.host ?? "localhost:2000";
     return `${protocol}://${host}/categories/${directory}/${fileName}`;
   }
 }

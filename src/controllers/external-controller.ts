@@ -223,7 +223,7 @@ export class ExternalController {
       await fs.mkdir(env.legacyThumbnailsRoot, { recursive: true });
       await fs.writeFile(path.join(env.legacyThumbnailsRoot, fileName), buffer);
       const protocol = request.secure ? "https" : "http";
-      const host = request.headers.host ?? "localhost:3000";
+      const host = request.headers.host ?? "localhost:2000";
       thumbUrl = `${protocol}://${host}/categories/thumbnails/${fileName}`;
     }
 

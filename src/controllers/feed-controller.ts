@@ -224,17 +224,28 @@ export class LegacyFeedController extends LegacyBaseController {
 
   public getDuals3 = async (request: Request, response: Response): Promise<void> => {
     const userId = getLegacyString(request, "user_id");
-    const type = getLegacyString(request, "type");
-    const screen = getLegacyString(request, "screen");
+    const type = getLegacyOptionalString(request, "type") ?? "";
+    const screen = getLegacyOptionalString(request, "screen") ?? "";
     const start = getLegacyOptionalString(request, "start");
     const pageSize = getLegacyOptionalString(request, "page_size");
     const seed = getLegacyOptionalString(request, "seed") ?? String(Date.now());
     const random = getLegacyOptionalString(request, "random") ?? "0";
-    const rows = await this.sharedRepository.queryMany<LegacyRow>(
-      `SELECT dp.*, CASE WHEN lm.loved_by IS NULL THEN FALSE ELSE TRUE END as is_loved, CASE WHEN sm.saved_by IS NULL THEN FALSE ELSE TRUE END as is_saved FROM dualpost_master dp LEFT JOIN save_master sm on dp.dual_id=sm.dual_id and sm.saved_by=${Number(userId)} LEFT JOIN love_master lm on dp.dual_id=lm.dual_id and lm.loved_by=${Number(userId)} WHERE dual_caption!='Not Provided' AND is_reported='NO' AND (dual_posted_by='${escapeSql(userId)}' OR dual_linked_to=${Number(userId)}) ORDER BY ${String(random) === "1" ? "RANDOM()" : "date_time DESC"}${start !== undefined && pageSize !== undefined ? ` LIMIT ${pageSize} OFFSET ${start}` : type === "post" && screen === "home" ? " LIMIT 4" : ""}`
-    );
-    if (rows.length > 0) {
-      sendLegacyJson(response, { status: "1", message: "Dual Post Found successfully", data: rows, total_posts: rows.length, seed });
+    const result = await this.feedRepository.homeDualFeedRows(userId, {
+      start,
+      pageSize,
+      random,
+      seed,
+      type,
+      screen
+    });
+    if (result.rows.length > 0) {
+      sendLegacyJson(response, {
+        status: "1",
+        message: "Dual Post Found successfully",
+        data: result.rows,
+        total_posts: result.total,
+        seed: result.seed
+      });
       return;
     }
     sendLegacyJson(response, { status: "0", message: "No Duals found for this b_id" });

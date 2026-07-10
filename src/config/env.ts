@@ -13,10 +13,10 @@ dotenv.config();
 
 const envSchema = z.object({
   NODE_ENV: z.string().default("development"),
-  PORT: z.coerce.number().default(3000),
+  PORT: z.coerce.number().default(2000),
   DATABASE_URL: z.string().default("postgresql://postgres:postgres@localhost:5432/droop_backend_node"),
-  LEGACY_PUBLIC_BASE_URL: z.string().default("http://localhost:3000/categories"),
-  LEGACY_STORAGE_BASE_URL: z.string().default("http://localhost:3000/storage"),
+  LEGACY_PUBLIC_BASE_URL: z.string().default("http://localhost:2000/categories"),
+  LEGACY_STORAGE_BASE_URL: z.string().default("http://localhost:2000/storage"),
   LEGACY_STORAGE_ROOT: z.string().default("./storage"),
   LEGACY_THUMBNAILS_ROOT: z.string().default("./runtime/thumbnails"),
   LEGACY_VIDEO_POSTS_ROOT: z.string().default("./runtime/videoPosts"),
