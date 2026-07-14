@@ -70,4 +70,33 @@ export class LegacyFollowRepository extends LegacyBaseRepository {
     sql += ` LIMIT ${pageSize} OFFSET ${start}`;
     return this.queryRows<LegacyRow>(sql);
   }
+
+  // NEW (other-profile v2): mutual friends = users the viewer follows who also follow the target.
+  // followers_master row semantics: followed_by follows following_id.
+  private mutualFriendsFromWhere(viewerId: string, targetId: string): string {
+    return `FROM followers_master mine
+       JOIN followers_master theirs ON mine.following_id = theirs.followed_by
+       JOIN user_master u ON CAST(mine.following_id AS INTEGER) = u.user_id
+       WHERE mine.followed_by='${escapeSql(viewerId)}'
+         AND theirs.following_id='${escapeSql(targetId)}'
+         AND mine.following_id <> '${escapeSql(targetId)}'
+         AND mine.following_id <> '${escapeSql(viewerId)}'`;
+  }
+
+  public async mutualFriends(viewerId: string, targetId: string, start?: string, pageSize?: string): Promise<LegacyRow[]> {
+    let sql = `SELECT DISTINCT u.user_id, u.user_pic, u.user_name, u.user_full_name
+       ${this.mutualFriendsFromWhere(viewerId, targetId)}
+       ORDER BY u.user_id`;
+    if (start !== undefined && pageSize !== undefined) {
+      sql += ` LIMIT ${Number(pageSize)} OFFSET ${Number(start)}`;
+    }
+    return this.queryRows<LegacyRow>(sql);
+  }
+
+  public async mutualFriendsTotal(viewerId: string, targetId: string): Promise<number> {
+    const row = await this.queryRow<LegacyRow>(
+      `SELECT count(DISTINCT u.user_id) as total ${this.mutualFriendsFromWhere(viewerId, targetId)}`
+    );
+    return Number(row?.total ?? 0);
+  }
 }

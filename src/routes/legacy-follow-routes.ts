@@ -7,5 +7,6 @@ export function registerLegacyFollowRoutes(router: Router, controllers: Controll
   router.all("/getFollowers", asyncHandler(controllers.legacyFollow.getFollowers));
   router.all("/getFollowers2", asyncHandler(controllers.legacyFollow.getFollowers2));
   router.all("/getFollowing", asyncHandler(controllers.legacyFollow.getFollowing));
+  router.all("/getMutualFriends", asyncHandler(controllers.legacyFollow.getMutualFriends));
   router.all("/getUserSuggession", asyncHandler(controllers.legacyFollow.getUserSuggession));
 }

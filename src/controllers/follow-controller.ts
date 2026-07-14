@@ -100,6 +100,27 @@ export class LegacyFollowController extends LegacyBaseController {
     sendLegacyJson(response, { status: "0", message: "No data found" });
   };
 
+  // NEW (other-profile v2): mutual friends between the logged-in viewer and a target profile.
+  // Mirrors getFollowers2's {status, data, total} envelope.
+  public getMutualFriends = async (request: Request, response: Response): Promise<void> => {
+    const userId = getLegacyString(request, "user_id"); // target profile owner
+    const loggedUserId = getLegacyString(request, "logged_user_id"); // viewer
+    const start = getLegacyOptionalString(request, "start");
+    const pageSize = getLegacyOptionalString(request, "page_size");
+    const rows = await this.followRepository.mutualFriends(loggedUserId, userId, start, pageSize);
+
+    if (rows.length > 0) {
+      sendLegacyJson(response, {
+        status: "1",
+        data: rows,
+        total: await this.followRepository.mutualFriendsTotal(loggedUserId, userId)
+      });
+      return;
+    }
+
+    sendLegacyJson(response, { status: "0", message: "No data found" });
+  };
+
   public getUserSuggession = async (request: Request, response: Response): Promise<void> => {
     const userId = getLegacyString(request, "user_id");
     const start = getLegacyString(request, "start", "0");
